@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import './theme.scss';
+import { NavbarComponent } from './Navbar';
 
 @Component({
   selector: 'app-login',
   template: `
+  <app-navbar></app-navbar>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div>
         <label>Email:</label>
@@ -20,7 +21,8 @@ import './theme.scss';
     </form>
     <p *ngIf="error">{{ error }}</p>
   `,
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['../theme.scss']
+
 })
 export class LoginComponent implements OnInit {
   form: FormGroup;
@@ -30,7 +32,14 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private http: HttpClient
-  ) { }
+  ) {  
+    this.error="",
+    this.form = this.fb.group({
+    username: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
+    verifyPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]]
+  });}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -40,22 +49,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.form.valid) {
-      const email = this.form.get('email').value;
-      const password = this.form.get('password').value;
+    if (!this.form.valid) {
+      return;
+    }
+    const email = "happy"
+    const password = 'sad'
 
-      this.http.get<{ data: any }>(`http://localhost:4005/${email}/${password}`)
-        .subscribe(response => {
-          if (!response.data) {
-            this.error = 'Please add the correct email or password';
-            return false;
-          } else {
-            localStorage.setItem('user', response.data.username);
-            localStorage.setItem('user_id', response.data.id);
-            localStorage.setItem('email', response.data.email);
-            this.router.navigate(['/']);
-          }
-        });
+    
+
     }
   }
-}
+

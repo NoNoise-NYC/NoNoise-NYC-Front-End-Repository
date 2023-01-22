@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NavbarComponent } from './Navbar.component';
+import { NavbarComponent } from './Navbar';
 
 @Component({
   selector: 'app-signup',
@@ -28,12 +28,13 @@ import { NavbarComponent } from './Navbar.component';
       <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">Sign Up</button>
     </form>
   `,
+  styleUrls: ['../theme.scss'],
   styles: [`
     mat-form-field {
       width: 100%;
+ 
     }
-  `],
-  directives: [NavbarComponent]
+  `]
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
@@ -43,7 +44,15 @@ export class SignupComponent implements OnInit {
     private route: ActivatedRoute,
     private http: HttpClient,
     private formBuilder: FormBuilder
-  ) { }
+  ) { 
+    this.signupForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
+      verifyPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]]
+    });
+  }
+
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({

@@ -16,7 +16,8 @@ import { Router } from '@angular/router';
       width: auto;
       margin-left: 5px;
     }
-  `]
+  `],
+  styleUrls: ['../theme.scss']
 })
 export class NavbarComponent implements OnInit {
   constructor(private router: Router) {}
