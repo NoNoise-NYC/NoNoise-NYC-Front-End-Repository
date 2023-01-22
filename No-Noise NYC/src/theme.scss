@@ -1,0 +1,29 @@
+$custom-primary: #3f51b5;
+$custom-secondary: #ff4081;
+$custom-accent: #ffd740;
+$custom-warn: #f44336;
+
+$custom-theme: mat-light-theme((
+  color: (
+    primary: $custom-primary,
+    accent: $custom-accent,
+    warn: $custom-warn
+  )
+
+  typography: (
+    fontFamily: 'Roboto, Arial, sans-serif',
+    h1: mat-typography-level(4, 48px, 56px),
+    h2: mat-typography-level(3, 32px, 48px),
+    h3: mat-typography-level(2, 24px, 36px),
+    h4: mat-typography-level(1, 20px, 28px),
+  )
+
+));
+body {
+  background-color: $primary-color;
+}
+
+input[type="submit"] {
+  background-color: $secondary-color;
+  color: white;
+}
