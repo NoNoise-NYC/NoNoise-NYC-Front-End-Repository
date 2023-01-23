@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, isDevMode } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,10 +8,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from 'src/components/Navbar';
 import { SignupComponent } from 'src/components/Signup';
 import { LoginComponent } from 'src/components/Login';
+import { FooterComponent } from 'src/components/Footer';
+import { environment } from './../environments/environment';
+
+import { AppRoutingModule } from './app-routing';
 
 const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
@@ -24,7 +29,8 @@ const appRoutes: Routes = [
     AppComponent,
     NavbarComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -32,10 +38,12 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatButtonModule,
     MatFormFieldModule,
+    AppRoutingModule,
     MatInputModule,
     MatIconModule,
     FormsModule,
     ReactiveFormsModule
+  
   ],
   exports: [
     RouterModule,
@@ -48,5 +56,5 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {  }
 

@@ -1,31 +1,16 @@
-import { Link, useMatch, useResolvedPath } from 'react-router-dom'
-import React from 'react'
-import './Footer.css'
-import logo from './logo.png'
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
+@Component({
+  selector: 'app-footer',
+  template: `<footer class='footer' [ngStyle]="{'position': 'fixed', 'bottom': '0', 'background-color': 'black'}"> <ul> <li><a [routerLink]='["/resources"]'>Resources</a></li> <li><a [routerLink]='["/contact"]'>Contact Us</a></li> </ul> </footer> `,
+  styleUrls: ['../theme.scss']
+  })
+export class FooterComponent implements OnInit {
 
-export default function Footer () {
-  return (
-    <footer className='footer'>
+constructor(private router: Router) { }
 
-      <img src={logo} alt='1' id='img' />
-      <ul>
-        <CustomLink to='https://www.linkedin.com/events/engagingblacktalent-networkinga6836136550963654656/'>Resources</CustomLink>
-        <CustomLink to='https://www.bing.com/ck/a?!&&p=6df04438f74b2999JmltdHM9MTY3MDcxNjgwMCZpZ3VpZD0xYWEyOTEyMS1lMGFlLTY1ZjktM2Y5Zi04MDRhZTExOTY0MDgmaW5zaWQ9NTE4Mw&ptn=3&hsh=3&fclid=1aa29121-e0ae-65f9-3f9f-804ae1196408&psq=marcy+lab+school&u=a1aHR0cHM6Ly93d3cubWFyY3lsYWJzY2hvb2wub3JnLw&ntb=1'>Contact Us</CustomLink>
-      </ul>
-    </footer>
-  )
+ngOnInit() {
 }
 
-function CustomLink ({ to, children, ...props }) {
-  const resolvedPath = useResolvedPath(to)
-  const isActives = useMatch({ path: resolvedPath.pathname, end: true })
-
-  return (
-    <li className={isActives ? 'active' : ''}>
-      <Link to={to} {...props}>
-        {children}
-      </Link>
-    </li>
-  )
 }

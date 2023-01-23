@@ -22,12 +22,15 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/theme.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -45,7 +48,14 @@
               ],
               "outputHashing": "all"
             },
+            "staging": {},
             "development": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ],
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -62,11 +72,12 @@
             "production": {
               "browserTarget": "project-name:build:production"
             },
+            "staging": {},
             "development": {
               "browserTarget": "project-name:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "production"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -84,7 +95,8 @@
             "tsConfig": "tsconfig.spec.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/theme.scss"

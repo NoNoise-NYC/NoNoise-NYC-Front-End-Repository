@@ -1,0 +1,28 @@
+:root {
+  --custom-primary: white;
+  --custom-secondary: #ff4081;
+  --custom-accent: #ffd740;
+  --custom-warn: #f44336;
+}
+
+body {
+  background-color: var(--custom-primary);
+}
+
+input[type="submit"] {
+  background-color: var(--custom-secondary);
+  color: white;
+}
+.navbar {
+  background-color: black;
+  position: fixed; 
+  top: 0px;
+  display: flex;
+  margin: 20px;
+  height: 70px;
+}
+
+#img {
+  width: auto;
+  margin-left: 5px;
+}
