@@ -1,0 +1,39 @@
+$custom-primary:white;
+$custom-secondary: #ff4081;
+$custom-accent: #ffd740;
+$custom-warn: #f44336;
+
+$typography: (
+  font-family: 'Roboto, Arial, sans-serif',
+  h1: mat-typography-level(4, 48px, 56px),
+  h2: mat-typography-level(3, 32px, 48px),
+  h3: mat-typography-level(2, 24px, 36px),
+  h4: mat-typography-level(1, 20px, 28px)
+);
+
+
+
+body {
+  background-color: white;
+}
+
+input[type="submit"] {
+  background-color: $custom-secondary;
+  color: black;
+}
+
+.form-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.form {
+  padding: 2rem;
+  width: 50%;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}

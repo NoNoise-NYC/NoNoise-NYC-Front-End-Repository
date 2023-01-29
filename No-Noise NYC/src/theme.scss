@@ -3,6 +3,7 @@ $custom-secondary: #ff4081;
 $custom-accent: #ffd740;
 $custom-warn: #f44336;
 
+
 $typography: (
   font-family: 'Roboto, Arial, sans-serif',
   h1: mat-typography-level(4, 48px, 56px),
@@ -12,7 +13,7 @@ $typography: (
 );
 
 body {
-  background-color: $custom-primary;
+  background-color: aqua;
 }
 
 input[type="submit"] {

@@ -5,8 +5,9 @@
   --custom-warn: #f44336;
 }
 
+
 body {
-  background-color: var(--custom-primary);
+  background-color: blue
 }
 
 input[type="submit"] {

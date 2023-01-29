@@ -2,26 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-navbar',
-  template: `
-  <mat-toolbar style="display: flex; margin: 20px; height: 70px; position: fixed; top: 0px; background-color: black;">
-      <img src="./logo.png" alt='1' id='img' style="width: auto; margin-left: 5px;"/>
-      <span style="flex-grow: 1;"></span>
-      <button mat-button color="primary" (click)="navigateToLogin()">Login</button>
-      <button mat-button color="primary" (click)="navigateToSignUp()">Sign Up</button>
-    </mat-toolbar>
-  `
+selector: 'app-navbar',
+template: `<mat-toolbar color="primary" class="navbar" [ngStyle]="{'width':'100vw', 'background-color': 'black','color': 'white'}">  <span class="spacer"></span> <button mat-button (click)="navigateToLogin()">Login</button> <button mat-button (click)="navigateToSignUp()">Sign Up</button> </mat-toolbar>` ,
+styleUrls: ['../theme.scss']
 })
 export class NavbarComponent implements OnInit {
-  constructor(private router: Router) {}
+constructor(private router: Router) {}
 
-  navigateToLogin() {
-    this.router.navigate(['/login']);
-  }
+navigateToLogin() {
+this.router.navigate(['/login']);
+}
 
-  navigateToSignUp() {
-    this.router.navigate(['/signup']);
-  }
+navigateToSignUp() {
+this.router.navigate(['/signup']);
+}
 
-  ngOnInit() {}
+ngOnInit() {}
 }

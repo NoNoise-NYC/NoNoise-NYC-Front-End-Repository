@@ -1,0 +1,28 @@
+<section id="screenshots" class="theme-bg screenshots">
+   <div class="animation-circle">
+      <i></i>
+      <i></i>
+      <i></i>
+   </div>
+   <div class="container">
+      <div class="row">
+         <div class="col-md-12 text-center">
+            <div class="section-title">
+               <h2 class="text-white">Chat Loop Screen Shot</h2>
+               <img src="assets/images/white-line.png" alt="title-line" class="img-fluid">
+            </div>
+         </div>
+      </div>
+      <div class="row">
+         <div class="col-12">
+            <div class="swiper-screenshots-container-1 swiper-container">
+               <swiper [config]="config" class="mySwiper">
+                  <ng-template swiperSlide *ngFor="let slide of slides">
+                     <img alt="" [src]="slide.img" class="img-fluid">
+                 </ng-template>
+               </swiper>
+               </div>
+         </div>
+      </div>
+   </div>
+</section>
