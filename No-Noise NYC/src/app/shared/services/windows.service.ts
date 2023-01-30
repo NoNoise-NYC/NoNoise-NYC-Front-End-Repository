@@ -21,10 +21,6 @@ export class BrowserWindowRef extends WindowRef {
     super();
   }
 
-  get nativeWindow(): Window | Object {
-    return window;
-  }
-
 }
 
 /* Create an factory function that returns the native window object. */

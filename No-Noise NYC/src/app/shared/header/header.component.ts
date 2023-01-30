@@ -11,12 +11,12 @@ declare var $: any;
 export class HeaderComponent implements OnInit {
 
   public darkHeader: boolean = false;  
-  public menuItems: any[];
+ 
   
   // Inject Document object
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    @Inject(WINDOW) private window
+    @Inject(WINDOW) private window :Window
   ) { }
 
   ngOnInit() {

@@ -22,8 +22,12 @@
     "@angular/router": "^15.1.1",
     "@angular/service-worker": "^15.1.0",
     "@ng-bootstrap/ng-bootstrap": "^14.0.1",
-    "ng-bootstrap": "^1.6.3",
+    "bootstrap": "^5.2.3",
+    "jquery": "^3.6.3",
+    "ng-bootstrap": "^0.46.0",
+    "ngx-page-scroll-core": "^10.0.0",
     "rxjs": "~7.8.0",
+    "script-loader": "^0.7.2",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },

@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,CUSTOM_ELEMENTS_SCHEMA ,NO_ERRORS_SCHEMA} from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonModule } from '@angular/common';
+import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
+import { OwlModule } from 'ngx-owl-carousel';
+import * as $ from 'jquery';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from 'src/components/Navbar';
@@ -22,6 +26,7 @@ import { rootRouterConfig } from './app.routes';
 
 import { DemoComponent } from './demo/demo.component';
 import { BlogComponent } from './blog/blog.component';
+
 
 
 import { AppRoutingModule } from './app-routing';
@@ -49,6 +54,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     MatToolbarModule,
     MatButtonModule,
+    NgxPageScrollCoreModule,
+    OwlModule,
     MatFormFieldModule,
     AppRoutingModule,
     MatInputModule,
@@ -58,9 +65,10 @@ const appRoutes: Routes = [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     SharedModule,
-    RouterModule.forRoot(rootRouterConfig, { useHash: false, anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled'})
+    RouterModule.forRoot(rootRouterConfig, { useHash: false, anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled'}),
+    CommonModule
   ],
-  
+  schemas: [NO_ERRORS_SCHEMA,CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents:[SignupComponent, LoginComponent]
