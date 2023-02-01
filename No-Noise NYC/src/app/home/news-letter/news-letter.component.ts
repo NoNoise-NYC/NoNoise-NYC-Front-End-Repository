@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
 
 @Component({
   selector: 'app-news-letter',
@@ -6,29 +10,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./news-letter.component.scss']
 })
 export class NewsLetterComponent implements OnInit {
+  form: FormGroup;
+  errorMessage: string;
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private formBuilder: FormBuilder, private http: HttpClient,   private fb: FormBuilder,) { 
+    this.form=this.fb.group({
+      username: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
+      verifyPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]]
+    })
+   this.errorMessage="";
   }
 
-  onSubmit(name) {
-  	if(!name) return false
-  	const form = document.createElement('form');
-    const element1 = document.createElement('input');
+  ngOnInit() {
+    this.form = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]]
+    });
+  }
 
-    form.method = 'POST';
-    form.target = '_blank';
-    form.action = 'https://pixelstrap.us19.list-manage.com/subscribe/post?u=5a128856334b598b395f1fc9b&amp;id=082f74cbda';
+  onSubmit() {
+    if (this.form.invalid) {
+      return;
+    }
 
-    element1.value = name;
-    element1.name = 'EMAIL';
-    element1.id = 'mce-EMAIL';
-    form.appendChild(element1);
-
-    document.body.appendChild(form);
-
-    form.submit();
+    this.http.post('https://pixelstrap.us19.list-manage.com/subscribe/post', {
+      email: this.form.value.email
+    })
+      .pipe(
+        catchError(error => {
+          this.errorMessage = error.message;
+          return throwError(error);
+        })
+      )
+      .subscribe();
   }
 
 }

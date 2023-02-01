@@ -5,11 +5,38 @@
   --custom-warn: #f44336;
 }
 
-
+.bg {
+  background-image: url('/assets/images/bg.jpg');
+}
 body {
-  background-color: blue
+  background-color: white
+}
+.section-1{
+  background-color: #1D75DE;
+  height: 33%;
 }
 
+.section-2{
+  background-color: #FFFFFF;
+  height: 33%;
+}
+
+.section-3{
+  background-color: #EFEFEF;
+  height: 33%;
+}
+
+
+  
+  body:nth-of-type(2) {
+  background-color: #FFFFFF;
+  height: 500px;
+  }
+  
+  body:nth-of-type(3) {
+  background-color: #EFEFEF;
+  height: 500px;
+  }
 input[type="submit"] {
   background-color: var(--custom-secondary);
   color: white;

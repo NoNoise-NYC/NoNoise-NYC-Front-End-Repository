@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ViewChild,ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -9,9 +9,11 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 selector: 'app-signup',
 template: `
 
-<div [ngStyle]="{'width':'100px', 'background-color': 'red','color': 'white'}"></div>
+
+<button (click)="openModal()">Sign Up</button>
 <ng-template #content let-modal>
-<form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+<form [ngStyle]="{'margin':'200px','width':'400px', 'background-color': 'red','color': 'white'}" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>Username</mat-label>
     <input matInput formControlName="username" required>
@@ -32,7 +34,7 @@ template: `
 </form>
 
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Modal Title</h4>
+    <h4 class="modal-title" id="modal-basic-title"></h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -68,6 +70,13 @@ styles: [`
     margin-bottom: 1rem;
     padding: 0.5rem;
   }
+  .modal-content {
+    background-color: #f2f2f2;
+    width: 500px;
+    height: 500px;
+    margin: 50px auto;
+    padding: 20px;
+  }
 
   button {
     margin-top: 1rem;
@@ -76,7 +85,8 @@ styles: [`
 })
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
-  content:null;
+  @ViewChild('content', { static: false }) content: ElementRef;
+
 
   constructor(
     private router: Router,
@@ -85,7 +95,7 @@ export class SignupComponent implements OnInit {
     private formBuilder: FormBuilder,
     private modalService: NgbModal
   ) { 
-    this.content=null,
+    this.content=new ElementRef(null),
     this.signupForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],

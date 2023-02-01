@@ -1,4 +1,4 @@
-import { Component, OnInit ,TemplateRef,ViewChild } from '@angular/core';
+import { Component, OnInit ,TemplateRef,ViewChild ,ElementRef} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -10,9 +10,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-login',
   template: `
-    <button class="btn btn-outline-primary" (click)="openModal()">Open Login Modal</button>
+    <button class="btn btn-outline-primary" (click)="openModal()"> Login</button>
 
-    <ng-template #content let-modal>
+    <ng-template let-modal #content >
       <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Login</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -68,7 +68,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   error: string;
-  content:null;
+
+  @ViewChild('content', { static: false }) content: ElementRef;
 
 
 
@@ -78,8 +79,9 @@ export class LoginComponent implements OnInit {
     private http: HttpClient,
     private modalService: NgbModal
   ) {  
-    this.error="",
-   this.content=null,
+    
+   this.content=new ElementRef(null),
+   this.error="",
     this.form = this.fb.group({
     username: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
