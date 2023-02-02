@@ -10,10 +10,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-login',
   template: `
-    <button class="btn btn-outline-primary" (click)="openModal()"> Login</button>
+    <button class="btn btn-outline-primary" style="{'margin-top':'120px'}" (click)="openModal()"> Login</button>
 
-    <ng-template let-modal #content >
-      <div class="modal-header">
+    <ng-template let-modal #content [ngStyle]="{'margin':'20px','margin-top':'120px','width':'400px', 'background-color': 'red','color': 'white'}">
+      <div class="modal-header" >
         <h4 class="modal-title" id="modal-basic-title">Login</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
           <span aria-hidden="true">&times;</span>

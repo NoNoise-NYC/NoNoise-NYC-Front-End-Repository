@@ -5,28 +5,32 @@
   --custom-warn: #f44336;
 }
 
-.bg {
-  background-image: url('/assets/images/bg.jpg');
-}
-body {
-  background-color: white
-}
-.section-1{
-  background-color: #1D75DE;
-  height: 33%;
-}
 
-.section-2{
-  background-color: #FFFFFF;
-  height: 33%;
-}
-
-.section-3{
-  background-color: #EFEFEF;
-  height: 33%;
-}
-
-
+.section-1 {
+  margin-top: 180px;
+    background-color: #EFEFEF;
+    height: 300px;
+    position:fixed;
+  
+   
+    width: 100vw;
+ 
+   
+  }
+  .section-2 {
+    margin-top: 0px;
+    background-color: #FFFFFF;
+    height: 300px;
+    width: 100vw;
+    position:relative;
+  
+    display: flex;
+ 
+   
+  }
+  
+  
+  
   
   body:nth-of-type(2) {
   background-color: #FFFFFF;

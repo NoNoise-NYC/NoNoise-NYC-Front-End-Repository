@@ -23,8 +23,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from "./shared/shared.module";
 import { rootRouterConfig } from './app.routes';
 
-import { DemoComponent } from './demo/demo.component';
 import { BlogComponent } from './blog/blog.component';
+import { HeatMapComponent } from 'src/components/heatMap';
 
 import { AppRoutingModule } from './app-routing';
 
@@ -42,7 +42,8 @@ const appRoutes: Routes = [
     LoginComponent,
     FooterComponent,
     BlogComponent,
-    DemoComponent
+    HeatMapComponent
+   
   ],
   imports: [
     BrowserModule,

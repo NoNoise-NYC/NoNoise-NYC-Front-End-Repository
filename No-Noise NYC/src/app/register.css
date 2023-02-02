@@ -1,0 +1,54 @@
+.modal {
+    display: none; 
+    position: relative;
+    z-index: 1;
+    padding-top: 100px; 
+    right: 0;
+    top: 0;
+    width: 50%; 
+    height: 80%; 
+    overflow: auto; 
+    background-color: #0D2129;
+    color:white;
+   
+  }
+  #intro{
+    color:black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 800;
+    font-size:xx-large;
+    margin: 40px;
+    padding: 50px;
+  }
+  .img{
+    width:300px;
+    height:300px;
+  }
+  /* Modal Content */
+  .modal-content {
+    background-color: transparent;
+    color: white;
+    margin: auto;
+    padding: 30px;
+
+    width: 80%;
+  }
+  
+  /* The Close Button */
+  .close {
+    color: black;
+    float: right;
+    font-size: 35px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  #nav-item{
+    
+   padding:20px;
+  }

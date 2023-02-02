@@ -1,18 +1,15 @@
 import { Routes, RouterModule } from '@angular/router';
-import { DemoComponent } from './demo/demo.component';
+
 import { BlogComponent } from './blog/blog.component';
 import { HomeComponent } from './home/home.component';
 
 export const rootRouterConfig: Routes = [
   { 
     path: '', 
-    redirectTo: 'demo', 
+    redirectTo: 'home', 
     pathMatch: 'full' 
   },
-  { 
-    path: 'demo',
-    component: DemoComponent
-  },
+ 
  
   { 
     path: 'home',

@@ -10,10 +10,10 @@ selector: 'app-signup',
 template: `
 
 
-<button (click)="openModal()">Sign Up</button>
+<button style="{'margin-top':'120px'}" (click)="openModal()">Sign Up</button>
 <ng-template #content let-modal>
 
-<form [ngStyle]="{'margin':'200px','width':'400px', 'background-color': 'red','color': 'white'}" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+<form [ngStyle]="{'margin':'20px','margin-top':'120px','width':'400px', 'background-color': 'red','color': 'white'}" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>Username</mat-label>
     <input matInput formControlName="username" required>
