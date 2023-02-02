@@ -9,11 +9,31 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 selector: 'app-signup',
 template: `
 
+<div class="modal-overlay" *ngIf="showModal"></div>
+<button class="btn btn-outline-primary fixed-top" style="background-color: black; color: white; padding: 40px 50px; z-index: 1; border-radius: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);" (click)="openModal()">
+  Sign Up
+</button>
 
-<button style="{'margin-top':'120px'}" (click)="openModal()">Sign Up</button>
-<ng-template #content let-modal>
-
-<form [ngStyle]="{'margin':'20px','margin-top':'120px','width':'400px', 'background-color': 'red','color': 'white'}" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+<style>
+  .fixed-top {
+    position: absolute;
+    top: 250px;
+    right: 40px;
+  }
+  .btn:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+  }
+</style>
+<ng-template #content let-modal [ngStyle]="{'margin':'20px','margin-top':'120px','width':'400px', 'position':'absolute','left':'500px','top':'100px','z-index':'1','background-color': ' white','color': 'blue'}">
+<div class="modal-header" >
+        <h4 class="modal-title" id="modal-basic-title">Sign Up</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+<form  [formGroup]="signupForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>Username</mat-label>
     <input matInput formControlName="username" required>
@@ -87,6 +107,11 @@ export class SignupComponent implements OnInit {
   signupForm: FormGroup;
   @ViewChild('content', { static: false }) content: ElementRef;
 
+  showModal = false;
+
+  closeModal() {
+    this.showModal = false;
+  }
 
   constructor(
     private router: Router,
@@ -106,6 +131,7 @@ export class SignupComponent implements OnInit {
 
   openModal() {
     this.modalService.open(this.content,{ ariaLabelledBy: 'modal-basic-title' });
+    this.showModal = true;
   }
   ngOnInit() {
     this.signupForm = this.formBuilder.group({

@@ -7,23 +7,42 @@
 
 
 .section-1 {
-  margin-top: 180px;
+  margin: auto;
     background-color:#503750;
-    height: 300px;
+    height: 420px;
     position:relative;
     width: 100vw; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #E6C4F4;
   }
   .content {
     padding: 16px;
     display: flex;
     justify-content: space-evenly;
 }
+#intro{
+  display: flex;
+  color: #E6C4F4;
+  flex-direction: column;
+  margin-left:100px;
+  margin-right: 100px;
+  width:400px;
+}
+
+#img1{
+  width:300px;
+  height:300px;
+  margin-right: 400px;
+}
+
 
 .content > mat-card {
     width: 200px;
 }
   .section-2 {
-    margin-top: 0px;
+    margin:auto;
     background-color: #FFFFFF;
     height: 500px;
     width: 100vw;

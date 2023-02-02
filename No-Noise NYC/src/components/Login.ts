@@ -10,9 +10,25 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-login',
   template: `
-    <button class="btn btn-outline-primary" style="{'margin-top':'120px'}" (click)="openModal()"> Login</button>
 
-    <ng-template let-modal #content [ngStyle]="{'margin':'20px','margin-top':'120px','width':'400px', 'background-color': 'red','color': 'white'}">
+  <button class="btn btn-outline-primary fixed-top" style="background-color: black; color: white; padding: 40px 50px; z-index: 1; border-radius: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);" (click)="openModal()">
+  Login
+</button>
+
+<style>
+  .fixed-top {
+    position: absolute;
+    top: 250px;
+    right: 40px;
+  }
+  .btn:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+  }
+</style>
+    <div class="modal-overlay" *ngIf="showModal"></div>
+    <ng-template let-modal #content [ngStyle]="{'margin':'20px','margin-top':'120px','width':'400px', 'position':'absolute','left':'500px','top':'150px','z-index':'1','background-color': 'white','color': 'blue'}">
       <div class="modal-header" >
         <h4 class="modal-title" id="modal-basic-title">Login</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -71,7 +87,14 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('content', { static: false }) content: ElementRef;
 
+  showModal = false;
 
+
+  
+
+  closeModal() {
+    this.showModal = false;
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -92,6 +115,9 @@ export class LoginComponent implements OnInit {
 
   openModal() {
     this.modalService.open(this.content,{ ariaLabelledBy: 'modal-basic-title' });
+    
+    this.showModal = true;
+
   }
 
   ngOnInit(): void {

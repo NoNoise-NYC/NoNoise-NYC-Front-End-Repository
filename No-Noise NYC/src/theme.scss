@@ -13,7 +13,7 @@ $typography: (
 );
 
 body {
-  background-color: #1D75DE;
+  background-color: black;
   height: 1000px;
   margin:auto;
   }
@@ -50,13 +50,21 @@ body {
      
     }
     
-    
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: -1;
+    }
 
 .logo {
-  height: 190px;
-  width: 190px;
+  height: 110px;
+  width: 110px;
   margin-left: 20px;
-  margin-top: 110px;
+ 
 }
 
 .spacer {
