@@ -18,6 +18,15 @@ body {
   margin:auto;
   }
   
+  .content {
+    padding: 16px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.content > mat-card {
+    width: 200px;
+}
   .section-1 {
     margin-top: 300px;
       background-color: #EFEFEF;

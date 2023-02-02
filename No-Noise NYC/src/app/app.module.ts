@@ -18,13 +18,14 @@ import { NavbarComponent } from 'src/components/Navbar';
 import { SignupComponent } from 'src/components/Signup';
 import { LoginComponent } from 'src/components/Login';
 import { FooterComponent } from 'src/components/Footer';
+import { MatCardModule} from '@angular/material/card';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from "./shared/shared.module";
 import { rootRouterConfig } from './app.routes';
 
 import { BlogComponent } from './blog/blog.component';
-import { HeatMapComponent } from 'src/components/heatMap';
+
 
 import { AppRoutingModule } from './app-routing';
 
@@ -41,8 +42,7 @@ const appRoutes: Routes = [
     SignupComponent,
     LoginComponent,
     FooterComponent,
-    BlogComponent,
-    HeatMapComponent
+    BlogComponent
    
   ],
   imports: [
@@ -50,6 +50,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     NgbModule,
     OwlModule,
+    MatCardModule,
     RouterModule.forRoot(appRoutes),
     MatToolbarModule,
     MatButtonModule,
