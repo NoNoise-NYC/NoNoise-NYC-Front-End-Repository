@@ -23,8 +23,9 @@ import { MatCardModule} from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from "./shared/shared.module";
 import { rootRouterConfig } from './app.routes';
-
+import { HeatMapComponent } from 'src/components/heatMap';
 import { BlogComponent } from './blog/blog.component';
+import { SlideshowComponent } from 'src/components/slideshowComponent';
 
 
 import { AppRoutingModule } from './app-routing';
@@ -42,7 +43,9 @@ const appRoutes: Routes = [
     SignupComponent,
     LoginComponent,
     FooterComponent,
-    BlogComponent
+    BlogComponent,
+    HeatMapComponent,
+    SlideshowComponent
    
   ],
   imports: [

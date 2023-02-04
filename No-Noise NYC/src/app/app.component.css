@@ -31,6 +31,9 @@
   width:400px;
 }
 
+#img3{
+  margin-top:30px;
+}
 #img1{
   width:300px;
   height:300px;
@@ -62,12 +65,11 @@
     position:relative;
   justify-content: space-between;
     display: flex;
- 
-   
   }
-  
-  
-  
+
+  #title{
+    margin-left:50px;
+  }
   
   
   body:nth-of-type(2) {
@@ -95,4 +97,14 @@ input[type="submit"] {
 #img {
   width: auto;
   margin-left: 5px;
+}
+
+#imag{
+  width:250px;
+  height:250px;
+}
+
+.card{
+  width:250px;
+  height:400px;
 }

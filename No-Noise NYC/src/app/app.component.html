@@ -34,9 +34,9 @@
 }
 
   .mat-card{
-    width: 80%;
-    border: 1px solid #ddd;
-    margin: 20px;
+    width: 70%;
+    border: 5px solid #ddd;
+    margin: 40px;
     box-shadow: 2px 2px 4px #ddd;
     transition: all 0.3s ease-in-out;
   }
@@ -91,7 +91,7 @@
   </style>
 <div class="section-1">
  
-    <h1 id="intro">NoNoise NYC is dedicated to promoting a quieter world, one community at a time. We recognize the detrimental effects that noise pollution has on the mental, physical, and financial well-being of our members in low-income neighborhoods. <br><br><button>Get Started with us Today!</button></h1>
+    <h1 id="intro">NoNoise NYC is dedicated to promoting a quieter world, one community at a time.  </h1>
     <img  id ="img1" mat-card-image src="./assets/images/noNoisee.jfif">
   </div>
   <div class="section-2">
@@ -129,7 +129,7 @@
     <div class="content" class ="card">
       <mat-card class="mat-elevation-z4">
         <mat-card-header>
-          <mat-card-title>Noise Pollution is more pervasive in low income neighborhoods.</mat-card-title>
+          <mat-card-title><h1>Noise Pollution is more pervasive in low income neighborhoods.</h1></mat-card-title>
         </mat-card-header>
         <img mat-card-image src="./assets/images/duality.jfif">
         <mat-card-content>
@@ -144,54 +144,38 @@
     
     </div>
     <div class="section-3">
-    
+     
       <div class="content" class ="card">
         <mat-card class="mat-elevation-z4">
           <mat-card-header>
-            <mat-card-title>Why Join Us?</mat-card-title>
+          
           </mat-card-header>
-          <img mat-card-image src="./assets/images/partying.png">
+          <img mat-card-image id="imag"src="./assets/images/partying2.png">
           <mat-card-content>
-            <p>
+            <h4>
              Partying is the third most popular noise complaint in NYC
-            </p>
+            </h4>
           </mat-card-content>
           <mat-card-actions>
-            <button  class="card-button"mat-button>Learn More</button>
+            <button  class="card-button"mat-button> <centre><h1 id="title">Why Join Us?</h1></centre></button>
             
           </mat-card-actions>
         </mat-card>
       </div>
+   
       <div class="content" class ="card">
         <mat-card class="mat-elevation-z4">
           <mat-card-header>
-            <mat-card-title>Why Join us?</mat-card-title>
+         
           </mat-card-header>
-          <img mat-card-image src="./assets/images/jackhammer.png">
+          <img mat-card-image id="imag" src="./assets/images/construction2.png">
           <mat-card-content>
-            <p>
+            <h4>
               Construction is the Number 1 noise complaint in NYC
-            </p>
+            </h4>
           </mat-card-content>
           <mat-card-actions>
-            <button  class = "card-button" mat-button>Learn More</button>
-            
-          </mat-card-actions>
-        </mat-card>
-      </div>
-      <div class="content" class ="card">
-        <mat-card class="mat-elevation-z4">
-          <mat-card-header>
-            <mat-card-title>Why Join us?</mat-card-title>
-          </mat-card-header>
-          <img mat-card-image src="./assets/images/construction.jpg">
-          <mat-card-content>
-            <p>
-             Construction is also a bigger problem in low-income neighborhoods
-            </p>
-          </mat-card-content>
-          <mat-card-actions>
-            <button class=" card-button" mat-button>Learn More</button>
+            <button class=" card-button" mat-button> <centre><h1 id="title">Why Join Us?</h1></centre></button>
           
           </mat-card-actions>
         </mat-card>
@@ -200,16 +184,16 @@
       <div class="content" class ="card">
         <mat-card class="mat-elevation-z4">
           <mat-card-header>
-            <mat-card-title>Why Join us?</mat-card-title>
+           
           </mat-card-header>
-          <img mat-card-image src="./assets/images/barkingdog.png">
+          <img mat-card-image id="imag" src="./assets/images/barkingdog2.png">
           <mat-card-content>
-            <p>
+            <h4>
              Barking dogs are the second highest noise complaint in NYC
-            </p>
+            </h4>
           </mat-card-content>
           <mat-card-actions>
-            <button class=" card-button" mat-button>Learn More</button>
+            <button class=" card-button" mat-button> <centre><h1 id="title">Why Join Us?</h1></centre></button>
           
           </mat-card-actions>
         </mat-card>
@@ -217,9 +201,10 @@
       
       </div>
       
-   
+      
+      <app-footer></app-footer>
 <router-outlet></router-outlet>
-<app-footer></app-footer>
+
 
 
 

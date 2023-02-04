@@ -11,6 +11,18 @@ $typography: (
   h3: mat-typography-level(2, 24px, 36px),
   h4: mat-typography-level(1, 20px, 28px)
 );
+.slideshow {
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  display: none;
+}
+
+.content:first-child {
+  display: block;
+}
 
 body {
   background-color: black;
@@ -56,14 +68,14 @@ body {
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: -1;
+      background-color: rgba(150, 169, 179, 0.5);
+     
     }
 
 .logo {
-  height: 110px;
-  width: 110px;
-  margin-left: 20px;
+  height: 150px;
+  width: 150px;
+  margin-left: 40px;
  
 }
 

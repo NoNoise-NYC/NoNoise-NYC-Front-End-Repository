@@ -1,11 +1,16 @@
-import { Component } from '@angular/core';
-import * as L from 'leaflet';
-import * as d3 from 'd3';
+
+
+import { Component, OnInit ,TemplateRef,ViewChild ,ElementRef} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { NavbarComponent } from './Navbar';
+
 
 @Component({
   selector: 'app-heat-map',
   template: `
-    <div id="map" style="height: 500px; width: 100%"></div>
+    <div id="map" style="height: 500px; width: 100%">HI</div>
   `,
   styles: [`
     #map {
@@ -15,65 +20,51 @@ import * as d3 from 'd3';
   `]
 })
 export class HeatMapComponent {
+  form: FormGroup;
+  error: string;
 
-  map: any;
-  heatLayer: any;
-  noiseData: any[];
+  @ViewChild('content', { static: false }) content: ElementRef;
 
-  constructor() { }
+  showModal = false;
 
-  ngOnInit() {
-    this.initMap();
-    this.getData();
+  closeModal() {
+    this.showModal = false;
   }
 
-  initMap() {
-    this.map = L.map('map').setView([40.7128, -74.0060], 11);
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private http: HttpClient
+ 
+  ) {  
+    
+   this.content=new ElementRef(null),
+   this.error="",
+    this.form = this.fb.group({
+    username: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
+    verifyPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]]
+  })}
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(this.map);
-  }
 
-  getData() {
-    d3.json("https://data.cityofnewyork.us/resource/be8n-q3nj.json?$$app_token=9MbDY0sSqTMCA5eUolm0MScll").then(data => {
-      this.noiseData = data;
-      this.createHeatMap();
+  
+  ngOnInit(): void {
+    this.content = this.content;
+    this.form = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]]
     });
   }
 
-  createHeatMap() {
-    const aggregatedData = this.aggregateData();
-
-    this.heatLayer = L.heatLayer(aggregatedData, {
-      radius: 20,
-      blur: 15,
-      gradient: {
-        0.4: 'blue',
-        0.65: 'lime',
-        1: 'red'
-      }
-    }).addTo(this.map);
-  }
-
-  aggregateData() {
-    const zipCodeFrequency = {};
-
-    this.noiseData.forEach(complaint => {
-      const zipCode = complaint.incident_zip;
-      if (!zipCodeFrequency[zipCode]) {
-        zipCodeFrequency[zipCode] = 0;
-      }
-      zipCodeFrequency[zipCode]++;
-    });
-
-    const aggregatedData = [];
-
-    for (const zipCode in zipCodeFrequency) {
-      aggregatedData.push([zipCode, zipCodeFrequency[zipCode]]);
+  onSubmit(): void {
+    if (!this.form.valid) {
+      this.router.navigate(['/heatmap']);
     }
+    const email = "happy"
+    const password = 'sad'
 
-    return aggregatedData;
+    
+
+    }
   }
-
-}
