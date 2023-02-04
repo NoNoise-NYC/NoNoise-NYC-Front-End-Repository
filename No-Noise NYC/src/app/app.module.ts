@@ -27,7 +27,7 @@ import { HeatmapComponent } from 'src/components/heatMap';
 import { BlogComponent } from './blog/blog.component';
 import { SlideshowComponent } from 'src/components/slideshowComponent';
 import { NoiseComplaintsMapComponent } from 'src/components/noiseComplaint';
-
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 import { AppRoutingModule } from './app-routing';
 
@@ -57,6 +57,7 @@ const appRoutes: Routes = [
     OwlModule,
     MatCardModule,
     RouterModule.forRoot(appRoutes),
+ 
     MatToolbarModule,
     MatButtonModule,
     NgxPageScrollCoreModule,

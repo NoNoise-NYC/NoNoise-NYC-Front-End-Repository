@@ -28,10 +28,10 @@ export class NoiseComplaintsMapComponent implements OnInit {
         const nestedData = nest().key(function(d:any) { return d.key; }).entries(data);
 
         this.zipcodes = nestedData
-          .key((d: any) => d.ZipCode)
-          .rollup((v: any) => v.length)
-          .entries(data)
-          .map((d: any) => ({zip: d.key, count: d.value}));
+        //   .key((d: any) => d.ZipCode)
+        //   .rollup((v: any) => v.length)
+          .entries()
+        //   .map((d: any) => ({zip: d.key, count: d.value}));
         this.render();
       })
       .catch((error) => {
