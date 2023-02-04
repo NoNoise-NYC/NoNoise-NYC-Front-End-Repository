@@ -1,70 +1,73 @@
-
-
-import { Component, OnInit ,TemplateRef,ViewChild ,ElementRef} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-import { NavbarComponent } from './Navbar';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import * as L from 'leaflet';
+import * as d3 from 'd3';
+import  {HeatLayer} from 'leaflet'
 
 
 @Component({
-  selector: 'app-heat-map',
+  selector: 'app-heatmap',
   template: `
-    <div id="map" style="height: 500px; width: 100%">HI</div>
+    <div id="map" #mapContainer style="height: 100vh;"></div>
   `,
-  styles: [`
-    #map {
-      height: 100%;
-      width: 100%;
-    }
-  `]
+  styles: ['./heatmap.component.css']
 })
-export class HeatMapComponent {
-  form: FormGroup;
-  error: string;
+export class HeatmapComponent implements OnInit {
+  @ViewChild('mapContainer', { static: true }) mapContainer: ElementRef;
 
-  @ViewChild('content', { static: false }) content: ElementRef;
+  noiseData: any[] = [];
+  map: L.Map = null;;
+  heatLayer: L.HeatLayer;
 
-  showModal = false;
-
-  closeModal() {
-    this.showModal = false;
+  constructor() {
+  
+    this.mapContainer = new ElementRef(this.map);
   }
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private http: HttpClient
- 
-  ) {  
-    
-   this.content=new ElementRef(null),
-   this.error="",
-    this.form = this.fb.group({
-    username: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
-    verifyPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]]
-  })}
-
-
-  
   ngOnInit(): void {
-    this.content = this.content;
-    this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]]
+    this.map = L.map(this.mapContainer.nativeElement).setView([40.730610, -73.935242], 12);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+      maxZoom: 18
+    }).addTo(this.map);
+
+  d3.json('https://data.cityofnewyork.us/resource/be8n-q3nj.json?$$app_token=9MbDY0sSqTMCA5eUolm0MScll').then((data: any) => {
+  const castData = data as any[];
+  this.noiseData = castData;
+      this.createHeatMap();
     });
   }
 
-  onSubmit(): void {
-    if (!this.form.valid) {
-      this.router.navigate(['/heatmap']);
-    }
-    const email = "happy"
-    const password = 'sad'
+  createHeatMap() {
+    const aggregatedData = this.aggregateData();
 
-    
-
-    }
+    this.heatLayer = (L as any).HeatLayer(aggregatedData, {
+      radius: 20,
+      blur: 15,
+      gradient: {
+        0.4: 'blue',
+        0.65: 'lime',
+        1: 'red'
+      }
+    }).addTo(this.map);
   }
+
+  aggregateData() {
+    const zipCodeFrequency: { [key: string]: number } = {};
+
+    this.noiseData.forEach(complaint => {
+      const zipCode = complaint.incident_zip;
+      if (!zipCodeFrequency[zipCode]) {
+        zipCodeFrequency[zipCode] = 0;
+      }
+      zipCodeFrequency[zipCode]++;
+    });
+
+    const aggregatedData = [];
+
+    for (const zipCode in zipCodeFrequency) {
+      const zipCodeString: string = zipCode;
+      aggregatedData.push([zipCodeString, zipCodeFrequency[zipCodeString]]);
+    }
+    return aggregatedData;
+  }
+}

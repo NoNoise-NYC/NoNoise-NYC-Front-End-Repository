@@ -23,9 +23,10 @@ import { MatCardModule} from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from "./shared/shared.module";
 import { rootRouterConfig } from './app.routes';
-import { HeatMapComponent } from 'src/components/heatMap';
+import { HeatmapComponent } from 'src/components/heatMap';
 import { BlogComponent } from './blog/blog.component';
 import { SlideshowComponent } from 'src/components/slideshowComponent';
+import { NoiseComplaintsMapComponent } from 'src/components/noiseComplaint';
 
 
 import { AppRoutingModule } from './app-routing';
@@ -44,8 +45,9 @@ const appRoutes: Routes = [
     LoginComponent,
     FooterComponent,
     BlogComponent,
-    HeatMapComponent,
-    SlideshowComponent
+    HeatmapComponent,
+    SlideshowComponent,
+    NoiseComplaintsMapComponent
    
   ],
   imports: [

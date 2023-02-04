@@ -11,14 +11,14 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-login',
   template: `
 
-  <button class="btn btn-outline-primary fixed-top" style="background-color: white; color: blue; padding: 10px 40px; z-index: 1; border-radius: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);" (click)="openModal()">
+  <button class="btn btn-outline-primary fixed-top" style="background-color: white; color: blue; padding: 40px 40px; z-index: 1; border-radius: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);" (click)="openModal()">
   Login
 </button>
 
 <style>
   .fixed-top {
     position: absolute;
-    top: 510px;
+    top: 410px;
     left: 140px;
   }
   .btn:hover {
@@ -28,7 +28,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   }
 </style>
    
-    <ng-template let-modal #content [ngStyle]="{'width':'200px', 'position':'absolute','left':'500px','top':'5px','z-index':'1','background-color': 'white','color': 'blue'}">
+    <ng-template let-modal #content [ngStyle]="{'width':'200px', 'position':'absolute','left':'500px','top':'50px','z-index':'1','background-color': 'white','color': 'blue'}">
       <centre><div class="modal-header" >
         <h4 class="modal-title" id="modal-basic-title">Login</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -77,7 +77,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
     button {
       margin-top: 1rem;
     }
-  `]
+  `],
+  styleUrls: ['../theme.scss']
 })
 
 
