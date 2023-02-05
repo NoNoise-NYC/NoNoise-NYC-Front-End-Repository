@@ -25,7 +25,7 @@ template: `
     cursor: pointer;
   }
 </style>
-<ng-template #content let-modal [ngStyle]="{'margin':'20px','margin-top':'120px','width':'400px', 'position':'absolute','left':'500px','top':'50px','z-index':'1','background-color': ' white','color': 'blue'}">
+<div  [ngStyle]="{'margin':'20px','margin-top':'120px','width':'400px', 'position':'absolute','left':'500px','top':'250px','z-index':'1','background-color': ' white','color': 'blue'}"><ng-template #content let-modal >
 <div class="modal-header" >
         <h4 class="modal-title" id="modal-basic-title">Sign Up</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -55,7 +55,9 @@ template: `
   <div class="modal-footer">
     <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
   </div>
-</ng-template>`
+</ng-template></div>
+
+`
 
 ,
 styles: [`
@@ -64,6 +66,9 @@ styles: [`
     flex-direction: column;
     align-items: center;
     padding: 2rem;
+    position:absolute;
+    left:500px;
+top:50px;
   }
 
   form {

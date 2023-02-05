@@ -27,8 +27,8 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
     cursor: pointer;
   }
 </style>
-   
-    <ng-template let-modal #content [ngStyle]="{'width':'200px', 'position':'absolute','left':'500px','top':'50px','z-index':'1','background-color': 'white','color': 'blue'}">
+   <div [ngStyle]="{'width':'200px', 'position':'absolute','left':'500px','top':'50px','z-index':'1','background-color': 'gray','color': 'blue'}">
+    <ng-template let-modal #content >
       <centre><div class="modal-header" >
         <h4 class="modal-title" id="modal-basic-title">Login</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -50,6 +50,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
         <p *ngIf="error">{{ error }}</p>
       </div>
     </ng-template>
+    </div>
   `,
   styles: [`
     .modal-body {
@@ -57,6 +58,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
       flex-direction: column;
       align-items: center;
       padding: 2rem;
+      position:absolute;
+      left:500px;
+  top:50px;
     }
 
     form {
@@ -126,7 +130,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
    
-      this.router.navigate(['/heatmap']);
+      this.router.navigate(['/home']);
     
 
     }

@@ -25,16 +25,19 @@ import { SharedModule } from "./shared/shared.module";
 import { rootRouterConfig } from './app.routes';
 import { HeatmapComponent } from 'src/components/heatMap';
 import { BlogComponent } from './blog/blog.component';
-import { SlideshowComponent } from 'src/components/slideshowComponent';
+import {MainPageComponent} from 'src/components2/MainPage'
+
 import { NoiseComplaintsMapComponent } from 'src/components/noiseComplaint';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+
 
 import { AppRoutingModule } from './app-routing';
 
 
 const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  {path:'home',component: MainPageComponent},
+  {path:'main',component: NoiseComplaintsMapComponent}
 ];
 
 @NgModule({
@@ -46,9 +49,9 @@ const appRoutes: Routes = [
     FooterComponent,
     BlogComponent,
     HeatmapComponent,
-    SlideshowComponent,
-    NoiseComplaintsMapComponent
-   
+    NoiseComplaintsMapComponent,
+    MainPageComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -57,7 +60,6 @@ const appRoutes: Routes = [
     OwlModule,
     MatCardModule,
     RouterModule.forRoot(appRoutes),
- 
     MatToolbarModule,
     MatButtonModule,
     NgxPageScrollCoreModule,

@@ -11,48 +11,58 @@ import { nest } from 'd3-collection';
     #map {
       width: 100%;
       height: 500px;
+      
     }
   `]
 })
 export class NoiseComplaintsMapComponent implements OnInit {
+  zipcodes: any = [];
+  complaints: any;
 
-    private zipcodes: any = [];
-
-  private complaints: any;
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    d3.csv('https://raw.githubusercontent.com/nychealth/coronavirus-data/master/case-hosp-death.csv')
-      .then((data) => {
-        const nestedData = nest().key(function(d:any) { return d.key; }).entries(data);
-
-        this.zipcodes = nestedData
-        //   .key((d: any) => d.ZipCode)
-        //   .rollup((v: any) => v.length)
-          .entries()
-        //   .map((d: any) => ({zip: d.key, count: d.value}));
-        this.render();
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-
-    d3.json('https://raw.githubusercontent.com/johan/world.geo.json/master/countries/USA/NY/ny.geo.json')
-      .then((data) => {
-        this.complaints = data;
-        this.render();
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    this.fetchData();
   }
 
-  private render() {
-    if (!this.complaints || !this.zipcodes) {
-      return;
-    }
+  private async fetchData() {
 
+
+    async function fetchData(): Promise<unknown[]> {
+      const complaintsData = await fetch('https://data.cityofnewyork.us/resource/be8n-q3nj.json?$$app_token=9MbDY0sSqTMCA5eUolm0MScll');
+      const data = await complaintsData.json();
+      return data;
+    }
+    
+    async function processData() {
+      const complaintsDataArray = await fetchData();
+      // processing code here
+    }
+    
+    processData();
+    
+    try {
+      const [ geojsonData] = await Promise.all([
+        // d3.json('https://data.cityofnewyork.us/resource/be8n-q3nj.json?$$app_token=9MbDY0sSqTMCA5eUolm0MScll'),
+        d3.json('https://raw.githubusercontent.com/johan/world.geo.json/master/countries/USA/NY/ny.geo.json')
+      ]);
+  
+    
+      console.log(geojsonData);
+      this.zipcodes = nest()
+        // .key((d: any) => d.zipcode)
+        // .rollup((v: any) => v.length)
+        // .entries(complaintsData)
+        // .map((d: any) => ({ zip: d.key, count: d.value }));
+      this.complaints = geojsonData;
+      this.render();
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+
+  private render() {
     const width = 500, height = 500;
 
     const projection = d3.geoMercator()
@@ -62,7 +72,8 @@ export class NoiseComplaintsMapComponent implements OnInit {
 
     const path = d3.geoPath().projection(projection);
 
-    const svg = d3.select('#map').append('svg')
+    const svg = d3.select('#map')
+      .append('svg')
       .attr('width', width)
       .attr('height', height);
 
@@ -83,13 +94,6 @@ export class NoiseComplaintsMapComponent implements OnInit {
         const coords = projection([d.zip, d.count]);
         return coords![0];
       })
-      .attr('cy', (d: any) => {
-        const coords = projection([d.zip, d.count]);
-        return !coords![1];
-      })
-      .attr('r', (d: any) => Math.sqrt(d.count) * 10)
-    
-      .style('fill', 'red')
-      .style('opacity', 0.75);
+      
+    }
   }
-}

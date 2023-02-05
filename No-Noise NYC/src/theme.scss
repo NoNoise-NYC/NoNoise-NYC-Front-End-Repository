@@ -25,7 +25,7 @@ $typography: (
 }
 
 body {
-  background-color: black;
+  background-color: white;
   height: 100vh;
   margin:auto;
   }
@@ -62,15 +62,7 @@ body {
      
     }
     
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(150, 169, 179, 0.5);
-     
-    }
+    
 
 .logo {
   height: 150px;
