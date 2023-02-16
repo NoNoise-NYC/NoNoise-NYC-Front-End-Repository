@@ -10,7 +10,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-login',
   template: `
-
+<app-navbar></app-navbar>
   <button class="btn btn-outline-primary fixed-top" style="background-color: white; color: blue; padding: 40px 40px; z-index: 1; border-radius: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);" (click)="openModal()">
   Login
 </button>
@@ -18,7 +18,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 <style>
   .fixed-top {
     position: absolute;
-    top: 410px;
+    top: 270px;
     left: 140px;
   }
   .btn:hover {
@@ -36,7 +36,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
         </button>
       </div></centre>
       <div class="modal-body">
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <form [formGroup]="loginform" (ngSubmit)="onSubmit()">
           <div>
             <label>Email:</label>
             <input type="email" formControlName="email" required />
@@ -58,7 +58,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
       flex-direction: column;
       align-items: center;
       padding: 2rem;
-      position:absolute;
+      position:relative;
       left:500px;
   top:50px;
     }
@@ -87,7 +87,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 export class LoginComponent implements OnInit {
-  form: FormGroup;
+  loginform: FormGroup;
   error: string;
 
   @ViewChild('content', { static: false }) content: ElementRef;
@@ -107,11 +107,9 @@ export class LoginComponent implements OnInit {
     
    this.content=new ElementRef(null),
    this.error="",
-    this.form = this.fb.group({
-    username: ['', Validators.required],
+    this.loginform = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
-    verifyPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]]
+    password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]]
   })}
 
 
@@ -122,17 +120,21 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.content = this.content;
-    this.form = this.fb.group({
+    this.loginform = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]]
     });
   }
-
-  onSubmit(): void {
-   
-      this.router.navigate(['/home']);
-    
-
-    }
+  onSubmit() {
+    const email = this.loginform.get('email')?.value;
+    const password = this.loginform.get('password')?.value;
+    this.http.get('http://localhost:4005/users').subscribe((data: any) => {
+      const foundUser = data.find((user: {email: string, password: string}) => {
+        return user.email === email && user.password === password;
+      });
+      if (foundUser) {
+        this.router.navigate(['/main']);
+      }
+    });
   }
-
+}  

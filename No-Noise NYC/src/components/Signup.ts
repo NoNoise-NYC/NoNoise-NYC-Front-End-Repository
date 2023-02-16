@@ -8,7 +8,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
 selector: 'app-signup',
 template: `
-
+<app-navbar></app-navbar>
 <button class="btn btn-outline-primary fixed-top" style="background-color: white; color: blue; padding: 35px 30px; z-index: 1; border-radius: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);" (click)="openModal()">
   Sign Up
 </button>
@@ -16,7 +16,7 @@ template: `
 <style>
 .fixed-top {
   position: absolute;
-  top: 410px;
+  top: 270px;
   left: 140px;
 }
   .btn:hover {
@@ -25,8 +25,8 @@ template: `
     cursor: pointer;
   }
 </style>
-<div  [ngStyle]="{'margin':'20px','margin-top':'120px','width':'400px', 'position':'absolute','left':'500px','top':'250px','z-index':'1','background-color': ' white','color': 'blue'}"><ng-template #content let-modal >
-<div class="modal-header" >
+<div  ><ng-template #content let-modal >
+<ng-template class="modal-header" >
         <h4 class="modal-title" id="modal-basic-title">Sign Up</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
           <span aria-hidden="true">&times;</span>
@@ -60,13 +60,26 @@ template: `
 `
 
 ,
+
+
 styles: [`
+.content{
+  margin:20px;
+  margin-top:120px;
+  width:400px;
+   position:absolute;
+   left:500px;
+   top:250px;
+   z-index:1;
+   background-color:  white;
+   color: blue;}
+
   .modal-body {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem;
-    position:absolute;
+    position:relative;
     left:500px;
 top:50px;
   }

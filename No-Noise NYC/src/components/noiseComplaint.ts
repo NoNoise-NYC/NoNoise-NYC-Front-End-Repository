@@ -11,7 +11,7 @@ import { nest } from 'd3-collection';
     #map {
       width: 100%;
       height: 500px;
-      
+      background-color: blue;
     }
   `]
 })
