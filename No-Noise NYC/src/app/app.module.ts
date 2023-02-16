@@ -12,7 +12,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { OwlModule } from 'ngx-owl-carousel';
-
+import { NewsFeedComponent } from './news-feed/news-feed.component';
+import { PostComponent } from './news-feed/post-feed/post.component';
+import { MAPBOX_ACCESS_TOKEN } from 'src/components/noiseComplaint';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from 'src/components/Navbar';
@@ -39,7 +41,6 @@ import { BasicModalComponent } from 'src/components/modal';
 import { NoiseComplaintsMapComponent } from 'src/components/noiseComplaint';
 import { SeverityMeterComponent } from 'src/components/severitymeter';
 
-
 import { AppRoutingModule } from './app-routing';
 import { map } from 'leaflet';
 
@@ -48,7 +49,9 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   {path:'home',component: MainPageComponent},
-  {path:'main',component: NoiseComplaintsMapComponent}
+  {path:'main',component: NoiseComplaintsMapComponent},
+  {path:'social',component: NewsFeedComponent},
+  {path:'heat',component: HeatmapComponent}
 ];
 
 @NgModule({
@@ -66,6 +69,8 @@ const appRoutes: Routes = [
     NewCommentModalComponent,
     PostFeedComponent,
     SeverityMeterComponent,
+    NewsFeedComponent,
+    PostComponent,
 
     InputFieldComponent,
     CommentListComponent,
@@ -95,8 +100,11 @@ const appRoutes: Routes = [
     RouterModule.forRoot(rootRouterConfig, { useHash: false, anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled'}),
     CommonModule
   ],
+  providers: [
+    { provide: MAPBOX_ACCESS_TOKEN, useValue: 'sk.eyJ1IjoibWFyY3dheW43IiwiYSI6ImNsZTBuOHppbDByMG8zb284OXMzaDBxb3kifQ.81d5MvNofyYW0ZCtoajk_A' }
+  ],
   schemas: [NO_ERRORS_SCHEMA],
-  providers: [],
+
   bootstrap: [AppComponent  ],
   entryComponents:[SignupComponent, LoginComponent]
 })

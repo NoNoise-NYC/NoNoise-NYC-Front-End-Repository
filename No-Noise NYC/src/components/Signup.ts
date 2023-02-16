@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChild,ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -6,35 +6,94 @@ import { NavbarComponent } from './Navbar';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-selector: 'app-signup',
-template: `
+  selector: 'app-signup',
+  template: `
 
 
 <app-navbar></app-navbar>
 
-<button class="btn btn-outline-primary fixed-top" style="background-color: white; color: blue; padding: 35px 30px; z-index: 1; border-radius: 20px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);" (click)="openModal()">
-  Sign Up
+<button  class="btn-animated"  style=" margin-left:100px ; z-index: 1;  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);" (click)="openModal()">
+<div class="btn-layer btn-layer-1"></div>
+<div class="btn-layer btn-layer-2"></div>
+<div class="btn-layer btn-layer-3"></div>
+SIgn Up
 </button>
 
 <style>
+.btn-animated {
+position: relative;
+width: 80px;
+height: 80px;
+border-radius: 40px;
+box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+overflow: hidden;
+cursor: pointer;
+}
+
+.btn-layer {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+border-radius: 40px;
+animation: pulse 2s infinite;
+}
+
+.btn-layer-1 {
+background-color: rgba(0, 0, 255, 0.1);
+animation-delay: 0s;
+}
+
+.btn-layer-2 {
+background-color: rgba(0, 0, 255, 0.3);
+animation-delay: 0.5s;
+}
+
+.btn-layer-3 {
+background-color: rgba(0, 0, 255, 0.5);
+animation-delay: 1s;
+}
+
+@keyframes pulse {
+0% {
+  transform: scale(1);
+}
+50% {
+  transform: scale(1.2);
+}
+100% {
+  transform: scale(1);
+}
+}
+
 .fixed-top {
   position: absolute;
-  top: 270px;
+  top: 2350px;
   left: 140px;
 }
-  .btn:hover {
-    background-color: white;
-    color: black;
-    cursor: pointer;
-  }
+.btn:hover {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
 </style>
+<div class="section-1">
 
-<ng-template #content let-modal  >
-        <h4 class="modal-title" id="modal-basic-title">Sign Up</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-          <span aria-hidden="true">&times;</span>
-        </button>
-<form  [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+<h1 id="intro">NoNoise NYC is dedicated to promoting a quieter world, one community at a time. </h1>
+<img id="img1" mat-card-image  src="./assets/images/noNooise.png">
+</div>
+<div>
+  <ng-template id="modal-content" #content let-modal>
+    <div style="position: absolute; top: 120px; height: 800px; left: 500px;  display: flex; align-items: center; justify-content: center;">
+      <div class="modal-content" style="position: relative; background-color: white; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); padding: 40px; width: 80%; max-width: 500px;">
+        <div class="modal-header">
+          <h4 >Sign Up</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <form  [formGroup]="signupForm" (ngSubmit)="onSubmit()">
   <mat-form-field>
     <mat-label>Username</mat-label>
     <input matInput formControlName="username" required>
@@ -52,20 +111,14 @@ template: `
     <input matInput formControlName="verifyPassword" type="password" required>
   </mat-form-field>
   <button mat-raised-button color="primary" type="submit" [disabled]="!signupForm.valid">Sign Up</button>
-</form>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
-  </div>
-</ng-template>
-
-
-<div class="section-1">
-
-<h1 id="intro">NoNoise NYC is dedicated to promoting a quieter world, one community at a time. </h1>
-<img id="img1" mat-card-image src="./assets/images/noNoisee.jfif">
+</form>  
+      </div>
+    </div>
+  </ng-template>
 </div>
-<div class="section-2">
 
+
+<div class="section-2">
 <div class="content" class="card card-3">
   <mat-card class="mat-elevation-z4">
     <mat-card-header>
@@ -201,19 +254,48 @@ template: `
 </div>
 
 </div>
+<app-footer></app-footer>
 
 
 `
-, styles: [`
-.modal-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 2rem;
-  position:absolute;
-  left:500px;
-top:50px;
-}
+  , styles: [`
+ .modal-body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+      position:absolute;
+      left:500px;
+  top:150px;
+    }
+    .modal-content {
+      position: relative;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+   
+      position: absolute;
+      top: calc(100px + 50vh - 50%);
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 300px;
+      background-color: white;
+      border: 1px solid black;
+    }
+    #modalcontent{
+      top:250px;
+      left:500px;
+      position:relative;
+      position: absolute;
+      top: calc(100px + 50vh - 50%);
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 300px;
+      background-color: white;
+      border: 1px solid black;
+    }
 
 form {
   width: 100%;
@@ -239,6 +321,14 @@ button {
   justify-content: center;
   align-items: center;
   width: 100%;
+      position: absolute;
+        top: calc(100px + 50vh - 50%);
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 500px;
+        height: 300px;
+        background-color: white;
+        border: 1px solid black;
 }
 
 .card-container {
@@ -363,7 +453,7 @@ font-weight: bold;
 }
 
 `],
-styleUrls: ['../theme.scss']
+  styleUrls: ['../theme.scss']
 })
 
 
@@ -383,18 +473,18 @@ export class SignupComponent implements OnInit {
     private http: HttpClient,
     private formBuilder: FormBuilder,
     private modalService: NgbModal
-  ) { 
-    this.content=new ElementRef(null),
-    this.signupForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
-      verifyPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]]
-    });
+  ) {
+    this.content = new ElementRef(null),
+      this.signupForm = this.formBuilder.group({
+        username: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
+        verifyPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]]
+      });
   }
 
   openModal() {
-    this.modalService.open(this.content,{ ariaLabelledBy: 'modal-basic-title' });
+    this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title' });
     this.showModal = true;
   }
   ngOnInit() {
@@ -404,32 +494,32 @@ export class SignupComponent implements OnInit {
       ]],
       password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]],
       verifyPassword: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]]
-      });
-      }
-      
-      onSubmit() {
-      const email = this.signupForm.get('email')?.value;
-      const password = this.signupForm.get('password')?.value;
-      const username = this.signupForm.get('username')?.value;
-      const verifyPassword = this.signupForm.get('verifyPassword')?.value;
-      if (password !== verifyPassword) {
-        alert('Passwords do not match');
-        return;
-      }
-      
-      this.http.post('http://localhost:4005/new_user', { username, email, password }).subscribe(data => {
-        this.http.get('http://localhost:4005/users').subscribe(async (data: any) => {
-          let emailChecker = await data.findIndex((ele: any) => ele.email === email);
-          let usernameChecker = await data.findIndex((ele: any) => ele.username === username);
-          if (emailChecker !== -1) {
-            alert('Email already exists');
-          } else if (usernameChecker !== -1) {
-            alert('Username already exists');
-          } else {
-            this.router.navigate(['/login']);
-          }
-          this.router.navigate(['/login']);
-        });
-      });
-    }
+    });
   }
+
+  onSubmit() {
+    const email = this.signupForm.get('email')?.value;
+    const password = this.signupForm.get('password')?.value;
+    const username = this.signupForm.get('username')?.value;
+    const verifyPassword = this.signupForm.get('verifyPassword')?.value;
+    if (password !== verifyPassword) {
+      alert('Passwords do not match');
+      return;
+    }
+
+    this.http.post('http://localhost:4005/new_user', { username, email, password }).subscribe(data => {
+      this.http.get('http://localhost:4005/users').subscribe(async (data: any) => {
+        let emailChecker = await data.findIndex((ele: any) => ele.email === email);
+        let usernameChecker = await data.findIndex((ele: any) => ele.username === username);
+        if (emailChecker !== -1) {
+          alert('Email already exists');
+        } else if (usernameChecker !== -1) {
+          alert('Username already exists');
+        } else {
+          this.router.navigate(['/login']);
+        }
+        this.router.navigate(['/login']);
+      });
+    });
+  }
+}
