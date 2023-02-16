@@ -1,17 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
+import * as mapboxgl from 'mapbox-gl';
 import { nest } from 'd3-collection';
 
 @Component({
   selector: 'app-noise-complaints-map',
   template: `
     <div id="map"></div>
+    <app-severity-meter></app-severity-meter>
   `,
   styles: [`
     #map {
+      top:200px;
+      background-color:aqua;
       width: 100%;
       height: 500px;
+<<<<<<< HEAD
       background-color: blue;
+=======
+>>>>>>> 56f756a4b0d913948fba2906268d20b3e2ecc173
     }
   `]
 })
@@ -19,81 +26,77 @@ export class NoiseComplaintsMapComponent implements OnInit {
   zipcodes: any = [];
   complaints: any;
 
-  constructor() {}
+  constructor() { }
 
   ngOnInit() {
     this.fetchData();
   }
 
   private async fetchData() {
-
-
-    async function fetchData(): Promise<unknown[]> {
+    async function fetchComplaintsData(): Promise<unknown[]> {
       const complaintsData = await fetch('https://data.cityofnewyork.us/resource/be8n-q3nj.json?$$app_token=9MbDY0sSqTMCA5eUolm0MScll');
       const data = await complaintsData.json();
       return data;
     }
-    
+
     async function processData() {
-      const complaintsDataArray = await fetchData();
+      const complaintsData = await fetchComplaintsData();
       // processing code here
     }
-    
+
     processData();
-    
+
     try {
-      const [ geojsonData] = await Promise.all([
-        // d3.json('https://data.cityofnewyork.us/resource/be8n-q3nj.json?$$app_token=9MbDY0sSqTMCA5eUolm0MScll'),
-        d3.json('https://raw.githubusercontent.com/johan/world.geo.json/master/countries/USA/NY/ny.geo.json')
+      const [complaintsData, geojsonData] = await Promise.all([
+        fetchComplaintsData(),
+        d3.json('https://data.cityofnewyork.us/resource/qyv6-5ipu.json')
       ]);
-  
-    
-      console.log(geojsonData);
       this.zipcodes = nest()
-        // .key((d: any) => d.zipcode)
-        // .rollup((v: any) => v.length)
-        // .entries(complaintsData)
-        // .map((d: any) => ({ zip: d.key, count: d.value }));
+        .key((d: any) => d.Borough)
+        .rollup((v: any) => v.length)
+        .entries(complaintsData)
+        .map((d: any) => ({ zip: d.key, count: d.value }));
       this.complaints = geojsonData;
       this.render();
     } catch (error) {
       console.error(error);
     }
   }
-  
 
   private render() {
-    const width = 500, height = 500;
 
-    const projection = d3.geoMercator()
-      .scale(75000)
-      .center([-73.94, 40.70])
-      .translate([width / 2, height / 2]);
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v10',
+      center: [-73.94, 40.70],
+      zoom: 9
+    });
 
-    const path = d3.geoPath().projection(projection);
+    map.on('load', () => {
+      map.addSource('ny', {
+        type: 'geojson',
+        data: this.complaints
+      });
 
-    const svg = d3.select('#map')
-      .append('svg')
-      .attr('width', width)
-      .attr('height', height);
-
-    svg.selectAll('path')
-      .data(this.complaints.features)
-      .enter()
-      .append('path')
-      .attr('d', path as any)
-      .style('fill', '#ccc')
-      .style('stroke', '#fff')
-      .style('stroke-width', 1);
-
-    svg.selectAll('circle')
-      .data(this.zipcodes)
-      .enter()
-      .append('circle')
-      .attr('cx', (d: any) => {
-        const coords = projection([d.zip, d.count]);
-        return coords![0];
-      })
-      
-    }
+      map.addLayer({
+        id: 'ny-fill',
+        type: 'fill',
+        source: 'ny',
+        paint: {
+          'fill-color': {
+            property: 'count',
+            stops: [
+              [0, '#EBF0F8'],
+              [10, '#D1E5F0'],
+              [20, '#B3CCE2'],
+              [30, '#88AAC7'],
+              [40, '#548DA0'],
+              [50, '#225A77']
+            ]
+          }
+        }
+      });
+    });
   }
+}
+

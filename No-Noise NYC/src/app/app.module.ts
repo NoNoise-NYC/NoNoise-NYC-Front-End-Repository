@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { OwlModule } from 'ngx-owl-carousel';
 
+
 import { AppComponent } from './app.component';
 import { NavbarComponent } from 'src/components/Navbar';
 import { SignupComponent } from 'src/components/Signup';
@@ -25,12 +26,22 @@ import { SharedModule } from "./shared/shared.module";
 import { rootRouterConfig } from './app.routes';
 import { HeatmapComponent } from 'src/components/heatMap';
 import { BlogComponent } from './blog/blog.component';
-import {MainPageComponent} from 'src/components2/MainPage'
+import {MainPageComponent} from 'src/components/MainPage'
+import { PostFeedComponent } from 'src/components/newPostPage';
+import { InputFieldComponent } from 'src/components/InputField';
+import { NewCommentModalComponent } from 'src/components/newCommentModal';
+import { CommentComponent } from 'src/components/comment';
+import { CommentModalComponent } from 'src/components/commentModal';
+import { CommentListComponent } from 'src/components2/commentList';
+import { BasicModalComponent } from 'src/components/modal';
+
 
 import { NoiseComplaintsMapComponent } from 'src/components/noiseComplaint';
+import { SeverityMeterComponent } from 'src/components/severitymeter';
 
 
 import { AppRoutingModule } from './app-routing';
+import { map } from 'leaflet';
 
 
 const appRoutes: Routes = [
@@ -50,12 +61,21 @@ const appRoutes: Routes = [
     BlogComponent,
     HeatmapComponent,
     NoiseComplaintsMapComponent,
-    MainPageComponent
-    
+    MainPageComponent,
+    CommentComponent,
+    NewCommentModalComponent,
+    PostFeedComponent,
+    SeverityMeterComponent,
+
+    InputFieldComponent,
+    CommentListComponent,
+    CommentModalComponent,
+    BasicModalComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+  
     NgbModule,
     OwlModule,
     MatCardModule,

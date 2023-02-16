@@ -15,16 +15,18 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CommentListComponent implements OnInit {
   data: any[] = [];
+  postId = '';
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
     this.http.get(`http://localhost:4005/comments/${this.postId}`)
       .subscribe(data => {
-        this.data = data;
+        this.data = data as any[];
       });
   }
 }
+
 
 
 
