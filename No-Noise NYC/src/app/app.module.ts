@@ -14,7 +14,7 @@ import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { OwlModule } from 'ngx-owl-carousel';
 import { NewsFeedComponent } from './news-feed/news-feed.component';
 import { PostComponent } from './news-feed/post-feed/post.component';
-import { MAPBOX_ACCESS_TOKEN } from 'src/components/noiseComplaint';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from 'src/components/Navbar';
@@ -26,7 +26,7 @@ import { MatCardModule} from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from "./shared/shared.module";
 import { rootRouterConfig } from './app.routes';
-import { HeatmapComponent } from 'src/components/heatMap';
+
 import { BlogComponent } from './blog/blog.component';
 import {MainPageComponent} from 'src/components/MainPage'
 import { PostFeedComponent } from 'src/components/newPostPage';
@@ -38,7 +38,7 @@ import { CommentListComponent } from 'src/components2/commentList';
 import { BasicModalComponent } from 'src/components/modal';
 
 
-import { NoiseComplaintsMapComponent } from 'src/components/noiseComplaint';
+import { HeatmapComponent } from 'src/components/noiseComplaint';
 import { SeverityMeterComponent } from 'src/components/severitymeter';
 
 import { AppRoutingModule } from './app-routing';
@@ -49,9 +49,8 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   {path:'home',component: MainPageComponent},
-  {path:'main',component: NoiseComplaintsMapComponent},
-  {path:'social',component: NewsFeedComponent},
-  {path:'heat',component: HeatmapComponent}
+  {path:'main',component: HeatmapComponent},
+  {path:'social',component: NewsFeedComponent}
 ];
 
 @NgModule({
@@ -63,7 +62,6 @@ const appRoutes: Routes = [
     FooterComponent,
     BlogComponent,
     HeatmapComponent,
-    NoiseComplaintsMapComponent,
     MainPageComponent,
     CommentComponent,
     NewCommentModalComponent,
@@ -99,9 +97,6 @@ const appRoutes: Routes = [
     SharedModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false, anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled'}),
     CommonModule
-  ],
-  providers: [
-    { provide: MAPBOX_ACCESS_TOKEN, useValue: 'sk.eyJ1IjoibWFyY3dheW43IiwiYSI6ImNsZTBuOHppbDByMG8zb284OXMzaDBxb3kifQ.81d5MvNofyYW0ZCtoajk_A' }
   ],
   schemas: [NO_ERRORS_SCHEMA],
 
