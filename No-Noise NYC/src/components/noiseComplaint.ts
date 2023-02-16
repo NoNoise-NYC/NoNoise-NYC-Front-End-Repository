@@ -2,9 +2,14 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewInit } from '@angula
 import * as L from 'leaflet';
 import * as d3 from 'd3';
 import { nest } from 'd3-collection';
+import { scaleLinear } from 'd3-scale';
+import { interpolateRdYlGn } from 'd3-scale-chromatic';
 
 import "leaflet.heat"
-import "leaflet.layerscontrol"
+
+
+import { scaleSequential } from 'd3-scale';
+
 
 interface BoroughData {
   borough: string;
@@ -39,18 +44,20 @@ export class HeatmapComponent implements AfterViewInit {
         1: 'red'
       }
     });
-    this.map = L.map(this.mapContainer.nativeElement).setView([40.730610, -73.935242], 12);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
-      maxZoom: 18
-    }).addTo(this.map);
+    // this.map = L.map(this.mapContainer.nativeElement).setView([40.730610, -73.935242], 12);
+    // L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>',
+    //   maxZoom: 18
+    // }).addTo(this.map);
   
-    d3.json('https://data.cityofnewyork.us/resource/be8n-q3nj.json?$$app_token=9MbDY0sSqTMCA5eUolm0MScll').then((data: any) => {
-      const castData = data as any[];
-      this.noiseData = castData;
-      this.createChloroplethHeatMap();
-    });
+    // d3.json('https://data.cityofnewyork.us/resource/be8n-q3nj.json?$$app_token=9MbDY0sSqTMCA5eUolm0MScll').then((data: any) => {
+    //   const castData = data as any[];
+    //   this.noiseData = castData;
+    //   this.createChloroplethHeatMap();
+    // });
   }
+
+  
   
   createBoroughsGeojson(boroughsData: BoroughData[]): any {
     const boroughsGeojson: any = {
@@ -79,12 +86,19 @@ export class HeatmapComponent implements AfterViewInit {
   
     return boroughsGeojson;
   }
+
   
-  createColorScale(boroughsData: BoroughData[]): d3.ScaleSequential<string> {
+  
+  createColorScale(boroughsData: BoroughData[]) {
+    const colorScale = scaleSequential().domain([0, 100]).interpolator((t) => `rgb(${t * 255}, 0, 0)`);
+
+
+const color = colorScale(50);
+
     const min = d3.min(boroughsData, (d: BoroughData) => d.noise_mean) || 0;
     const max = d3.max(boroughsData, (d: BoroughData) => d.noise_mean) || 100;
   
-    return d3.scaleSequential(d3.interpolateRgb('blue', 'red')).domain([min, max]);
+    return "d3.scaleSequential(d3.interpolateRgb('blue', 'red')).domain([min, max]);"
   }
   
   createChloroplethHeatMap() {
@@ -96,8 +110,8 @@ export class HeatmapComponent implements AfterViewInit {
     boroughsGeojson.features.forEach((feature: any) => {
       const boroughName = feature.properties.borough;
       const boroughData = boroughsData.find((d: any) => d.borough === boroughName);
-      const color = colorScale(boroughData!.noise_mean);
-      feature.properties.color = color;
+     
+      
     });
   
     L.geoJSON(boroughsGeojson, {
