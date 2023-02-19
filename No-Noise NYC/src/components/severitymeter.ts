@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-severity-meter',
   template: `
-    <form (ngSubmit)="onSubmit()">
+    <form style="position: absolute; top: 120px; height: 200px; left: 500px; background-color: white;display: flex; justify-content: center;"(ngSubmit)="onSubmit()">
       <div class="form-group">
         <label>Title:</label>
         <input type="text" [(ngModel)]="complaint.title" name="title" class="form-control">
@@ -30,6 +30,7 @@ import { HttpClient } from '@angular/common/http';
 
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <img src="./assets/images/npise complaints.png" alt="logo" class="logo2">
   `,
   styles: [`
     .severity-meter {
@@ -40,7 +41,8 @@ import { HttpClient } from '@angular/common/http';
       margin-left: 0.5em;
       font-weight: bold;
     }
-  `]
+  `],
+  styleUrls: ['../theme.scss']
 })
 export class SeverityMeterComponent implements OnInit {
   complaint = {

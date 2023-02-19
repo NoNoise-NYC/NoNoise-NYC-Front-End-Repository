@@ -36,9 +36,9 @@ import { CommentComponent } from 'src/components/comment';
 import { CommentModalComponent } from 'src/components/commentModal';
 import { CommentListComponent } from 'src/components2/commentList';
 import { BasicModalComponent } from 'src/components/modal';
-
-
 import { HeatmapComponent } from 'src/components/noiseComplaint';
+
+// import { HeatmapComponent } from 'src/components/noiseComplaint';
 import { SeverityMeterComponent } from 'src/components/severitymeter';
 
 import { AppRoutingModule } from './app-routing';
@@ -48,9 +48,9 @@ import { map } from 'leaflet';
 const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  {path:'home',component: MainPageComponent},
-  {path:'main',component: HeatmapComponent},
-  {path:'social',component: NewsFeedComponent}
+  {path:'home',component: SeverityMeterComponent},
+  {path:'social',component: HeatmapComponent}
+
 ];
 
 @NgModule({
@@ -61,8 +61,8 @@ const appRoutes: Routes = [
     LoginComponent,
     FooterComponent,
     BlogComponent,
-    HeatmapComponent,
-    MainPageComponent,
+   
+  MainPageComponent,
     CommentComponent,
     NewCommentModalComponent,
     PostFeedComponent,

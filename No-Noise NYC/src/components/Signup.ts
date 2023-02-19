@@ -16,7 +16,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 <div class="btn-layer btn-layer-1"></div>
 <div class="btn-layer btn-layer-2"></div>
 <div class="btn-layer btn-layer-3"></div>
-SIgn Up
+Sign Up
 </button>
 
 <style>
@@ -85,8 +85,8 @@ animation-delay: 1s;
 </div>
 <div>
   <ng-template id="modal-content" #content let-modal>
-    <div style="position: absolute; top: 120px; height: 800px; left: 500px;  display: flex; align-items: center; justify-content: center;">
-      <div class="modal-content" style="position: relative; background-color: white; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); padding: 40px; width: 80%; max-width: 500px;">
+    <div style="position: absolute; top: 40px; height: 800px; left: 500px;  display: flex; align-items: center; justify-content: center;">
+      <div class="modal-content" style="position: relative;background-color: white; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); padding: 20px; width: 80%; max-width: 500px;">
         <div class="modal-header">
           <h4 >Sign Up</h4>
           <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
@@ -117,143 +117,66 @@ animation-delay: 1s;
   </ng-template>
 </div>
 
-
-<div class="section-2">
-<div class="content" class="card card-3">
-  <mat-card class="mat-elevation-z4">
-    <mat-card-header>
-      <div class="card-front">
-        <mat-card-title>
-          <h1>Noise Pollution disrupts bronx residents.</h1>
-        </mat-card-title>
-      </div>
-
-    </mat-card-header>
-    <img mat-card-image src="./assets/images/bronx.jfif">
-    <mat-card-content>
-      <div class="card-back">
-        hey
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <mat-card-title>
-        <h1>Noise Pollution disrupts bronx residents.</h1>
-      </mat-card-title>
-
-    </mat-card-actions>
-  </mat-card>
-</div>
-<div class="content" class="card card-2">
-  <mat-card class="mat-elevation-z4">
-    <mat-card-header>
-      <div class="card-front"> 
-      </div>
-    </mat-card-header>
-    <img mat-card-image src="./assets/images/duality.jfif">
-    <mat-card-content>
-      <div class="card-back">
-        me again
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <mat-card-title>
-        <h1>Noise Pollution usually comes with other forms of pollution</h1>
-      </mat-card-title>
-    </mat-card-actions>
-  </mat-card>
-</div>
-<div class="content" class="card card-1">
-  <mat-card class="mat-elevation-z4">
-    <mat-card-header>
-      <div class="card-front"></div>
-    </mat-card-header>
-    <img mat-card-image src="./assets/images/duality.jfif">
-    <mat-card-content>
-      <div class="card-back">
-        sup
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-     
-        <mat-card-title>
-          <h1>Noise Pollution is more pervasive in low income neighborhoods.</h1>
-        </mat-card-title>
-      
-
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-</div>
 <div class="section-3">
-
-<div class="content" class="card card-4">
-  <mat-card class="mat-elevation-z4">
-    <mat-card-header>
-
-    </mat-card-header>
-    <img mat-card-image id="imag" src="./assets/images/partying2.png">
-    <mat-card-content>
-      <h4>
-        Partying is the third most popular noise complaint in NYC
-      </h4>
-    </mat-card-content>
-    <mat-card-actions>
-      <button class="card-button" mat-button>
-        <centre>
-          <h1 id="title">Why Join Us?</h1>
-        </centre>
-      </button>
-
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-<div class="content" class="card card-5">
-  <mat-card class="mat-elevation-z4">
-    <mat-card-header>
-
-    </mat-card-header>
-    <img mat-card-image id="imag" src="./assets/images/construction2.png">
-    <mat-card-content>
-      <h4>
-        Construction is the Number 1 noise complaint in NYC
-      </h4>
-    </mat-card-content>
-    <mat-card-actions>
-      <button class=" card-button" mat-button>
-        <centre>
-          <h1 id="title">Why Join Us?</h1>
-        </centre>
-      </button>
-
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-<div class="content" class="card card-6">
-  <mat-card class="mat-elevation-z4">
-    <mat-card-header>
-
-    </mat-card-header>
-    <img mat-card-image id="imag" src="./assets/images/barkingdog2.png">
-    <mat-card-content>
-      <h4>
-        Barking dogs are the second highest noise complaint in NYC
-      </h4>
-    </mat-card-content>
-    <mat-card-actions>
-      <button class=" card-button" mat-button>
-        <centre>
-          <h1 id="title">Why Join Us?</h1>
-        </centre>
-      </button>
-
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-</div>
+      <mat-card class="mat-elevation-z4">
+        <mat-card-header>
+        </mat-card-header>
+        <div class="slideshow-container">
+          <div class="mySlides">
+            <div class="content card card-4">
+              <img mat-card-image id="imag" src="./assets/images/partying2.png">
+              <mat-card-content>
+                <h4>Partying is the third most popular noise complaint in NYC</h4>
+              </mat-card-content>
+              <mat-card-actions>
+                <button class="card-button" mat-button>
+                  <centre>
+                    <h1 id="title">Join Us</h1>
+                  </centre>
+                </button>
+              </mat-card-actions>
+            </div>
+          </div>
+          <div class="mySlides">
+            <div class="content card card-5">
+              <img mat-card-image id="imag" src="./assets/images/construction2.png">
+              <mat-card-content>
+                <h4>Construction is the Number 1 noise complaint in NYC</h4>
+              </mat-card-content>
+              <mat-card-actions>
+                <button class="card-button" mat-button>
+                  <centre>
+                    <h1 id="title">Join Us</h1>
+                  </centre>
+                </button>
+              </mat-card-actions>
+            </div>
+          </div>
+          <div class="mySlides">
+            <div class="content card card-6">
+              <img mat-card-image id="imag" src="./assets/images/barkingdog2.png">
+              <mat-card-content>
+                <h4>Barking dogs are the second highest noise complaint in NYC</h4>
+              </mat-card-content>
+              <mat-card-actions>
+                <button class="card-button" mat-button>
+                  <centre>
+                    <h1 id="title">Join Us</h1>
+                  </centre>
+                </button>
+              </mat-card-actions>
+            </div>
+          </div>
+          <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+          <a class="next" (click)="plusSlides(1)">&#10095;</a>
+          <div style="text-align:center">
+            <span class="dot" (click)="currentSlide(1)"></span>
+            <span class="dot" (click)="currentSlide(2)"></span>
+            <span class="dot" (click)="currentSlide(3)"></span>
+          </div>
+        </div>
+      </mat-card>
+    </div>
 <app-footer></app-footer>
 
 
@@ -336,12 +259,14 @@ button {
 }
 
 .card {
+  top:200px;
   width: 300px;
   height: 400px;
   position: relative;
   transition: transform 0.6s;
   transform-style: preserve-3d;
   border: 5px solid #000000;
+  background-color:#E7EAF4
 }
 
 .card-front,
@@ -463,6 +388,48 @@ export class SignupComponent implements OnInit {
 
   showModal = false;
 
+  slideIndex = 1;
+
+  ngAfterViewInit() {
+    this.showSlides(this.slideIndex);
+  }
+
+  plusSlides(n: number) {
+    this.showSlides(this.slideIndex += n);
+  }
+
+  currentSlide(n: number) {
+    this.showSlides(this.slideIndex = n);
+  }
+
+  
+
+  showSlides(n: number) {
+
+    let i;
+    const slides = document.getElementsByClassName("mySlides") as HTMLCollectionOf<HTMLElement>;
+    const dots = document.getElementsByClassName("dot") as HTMLCollectionOf<HTMLElement>;
+    if (n > slides.length) {
+      this.slideIndex = 1;
+    }
+    if (n < 1) {
+      this.slideIndex = slides.length;
+    }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[this.slideIndex - 1].style.display = "block";
+    dots[this.slideIndex - 1].className += " active";
+    }
+    
+
+    
+  startSlideShow() {
+    setInterval(this.showSlides, 5000);
+  }
   closeModal() {
     this.showModal = false;
   }
@@ -488,6 +455,7 @@ export class SignupComponent implements OnInit {
     this.showModal = true;
   }
   ngOnInit() {
+   
     this.signupForm = this.formBuilder.group({
       username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email
@@ -511,15 +479,9 @@ export class SignupComponent implements OnInit {
       this.http.get('http://localhost:4005/users').subscribe(async (data: any) => {
         let emailChecker = await data.findIndex((ele: any) => ele.email === email);
         let usernameChecker = await data.findIndex((ele: any) => ele.username === username);
-        if (emailChecker !== -1) {
-          alert('Email already exists');
-        } else if (usernameChecker !== -1) {
-          alert('Username already exists');
-        } else {
-          this.router.navigate(['/login']);
-        }
-        this.router.navigate(['/login']);
       });
     });
+        this.router.navigate(['/login']);
+
   }
 }

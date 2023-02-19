@@ -99,7 +99,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 </div>
 <div>
   <ng-template id="modal-content" #content let-modal>
-    <div style="position: absolute; top: 120px; height: 600px; left: 500px;  display: flex; align-items: center; justify-content: center;">
+    <div style="position: absolute; top: 120px; height: 600px; left: 500px; z-index:1;display: flex; align-items: center; justify-content: center;">
       <div class="modal-content" style="position: relative; background-color: white; border-radius: 4px; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); padding: 40px; width: 80%; max-width: 500px;">
         <div class="modal-header">
           <h4 >Log In</h4>
@@ -117,7 +117,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
     <input matInput formControlName="password" type="password" required>
   </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit" [disabled]="!loginform.valid">Sign Up</button>
+  <button mat-raised-button color="primary" type="submit" [disabled]="!loginform.valid">Log In</button>
 </form>  
       </div>
     </div>
@@ -126,137 +126,55 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 
 <div class="section-2">
-<div class="content" class="card card-3">
-  <mat-card class="mat-elevation-z4">
-    <mat-card-header>
-      <div class="card-front">
-        <mat-card-title>
-          <h1>Noise Pollution disrupts bronx residents.</h1>
-        </mat-card-title>
+<mat-card class="mat-elevation-z4">
+        <mat-card-header>
+        </mat-card-header>
+        <div class="slideshow-container">
+          <div class="mySlides">
+            <div class="content card card-4">
+              <img mat-card-image id="imag" src="./assets/images/bronx.jfif">
+              <div class="card-body">
+          <h5 class="card-title">Noise Pollution disrupts Bronx residents.</h5>
+          <p class="card-text">Learn more about the effects of noise pollution on the residents of the Bronx.</p>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" routerLink="/articles/bronx">Read more</button>
+        </div>
       </div>
+    </div>
 
-    </mat-card-header>
-    <img mat-card-image src="./assets/images/bronx.jfif">
-    <mat-card-content>
-      <div class="card-back">
-        hey
+          <div class="mySlides">
+            <div class="content card card-5">
+              <img mat-card-image id="imag" src="./assets/images/airplane.jfif">
+              <div class="card-body">
+          <h5 class="card-title">What you need to know about airplane noise.</h5>
+          <p class="card-text">Discover the facts about airplane noise and how it affects you.</p>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" routerLink="/articles/airplane">Read more</button>
+        </div>
       </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <mat-card-title>
-        <h1>Noise Pollution disrupts bronx residents.</h1>
-      </mat-card-title>
-
-    </mat-card-actions>
-  </mat-card>
-</div>
-<div class="content" class="card card-2">
-  <mat-card class="mat-elevation-z4">
-    <mat-card-header>
-      <div class="card-front"> 
-      </div>
-    </mat-card-header>
-    <img mat-card-image src="./assets/images/duality.jfif">
-    <mat-card-content>
-      <div class="card-back">
-        me again
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <mat-card-title>
-        <h1>Noise Pollution usually comes with other forms of pollution</h1>
-      </mat-card-title>
-    </mat-card-actions>
-  </mat-card>
-</div>
-<div class="content" class="card card-1">
-  <mat-card class="mat-elevation-z4">
-    <mat-card-header>
-      <div class="card-front"></div>
-    </mat-card-header>
-    <img mat-card-image src="./assets/images/duality.jfif">
-    <mat-card-content>
-      <div class="card-back">
-        sup
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-        <mat-card-title>
-          <h1>Noise Pollution is more pervasive in low income neighborhoods.</h1>
-        </mat-card-title>
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-</div>
-<div class="section-3">
-<div class="content" class="card card-4">
-  <mat-card class="mat-elevation-z4">
-    <mat-card-header>
-
-    </mat-card-header>
-    <img mat-card-image id="imag" src="./assets/images/partying2.png">
-    <mat-card-content>
-      <h4>
-        Partying is the third most popular noise complaint in NYC
-      </h4>
-    </mat-card-content>
-    <mat-card-actions>
-      <button class="card-button" mat-button>
-        <centre>
-          <h1 id="title">Why Join Us?</h1>
-        </centre>
-      </button>
-
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-<div class="content" class="card card-5">
-  <mat-card class="mat-elevation-z4">
-    <mat-card-header>
-
-    </mat-card-header>
-    <img mat-card-image id="imag" src="./assets/images/construction2.png">
-    <mat-card-content>
-      <h4>
-        Construction is the Number 1 noise complaint in NYC
-      </h4>
-    </mat-card-content>
-    <mat-card-actions>
-      <button class=" card-button" mat-button>
-        <centre>
-          <h1 id="title">Why Join Us?</h1>
-        </centre>
-      </button>
-
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-<div class="content" class="card card-6">
-  <mat-card class="mat-elevation-z4">
-    <mat-card-header>
-
-    </mat-card-header>
-    <img mat-card-image id="imag" src="./assets/images/barkingdog2.png">
-    <mat-card-content>
-      <h4>
-        Barking dogs are the second highest noise complaint in NYC
-      </h4>
-    </mat-card-content>
-    <mat-card-actions>
-      <button class=" card-button" mat-button>
-        <centre>
-          <h1 id="title">Why Join Us?</h1>
-        </centre>
-      </button>
-
-    </mat-card-actions>
-  </mat-card>
-</div>
-
-</div>
+    </div>
+          <div class="mySlides">
+            <div class="content card card-6">
+              <img mat-card-image id="imag" src="./assets/images/earplugs.jfif">
+              <mat-card-content>
+                <h4>Barking dogs are the second highest noise complaint in NYC</h4>
+                <div class="card-body">
+          <h5 class="card-title">Find the perfect earplugs for you.</h5>
+          <p class="card-text">Explore our selection of earplugs and find the right ones for your needs.</p>
+        </div>
+        <div class="card-footer">
+          <button class="btn btn-primary" routerLink="/shop">Shop now</button>
+        </div>
+          <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+          <a class="next" (click)="plusSlides(1)">&#10095;</a>
+          <div style="text-align:center">
+            <span class="dot" (click)="currentSlide(1)"></span>
+            <span class="dot" (click)="currentSlide(2)"></span>
+            <span class="dot" (click)="currentSlide(3)"></span>
+          </div>
+<app-footer></app-footer>
 
   `
   , styles: [`
@@ -269,6 +187,9 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
         left:500px;
     top:150px;
       }
+      .modal-open {
+  filter: blur(4px);
+}
       .modal-content {
         position: relative;
         top: 50%;
@@ -340,7 +261,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
     width: 300px;
     height: 400px;
     position: relative;
-    transition: transform 0.6s;
+    transition: transform 0.3s;
     transform-style: preserve-3d;
     border: 5px solid #000000;
   }
@@ -464,10 +385,54 @@ export class LoginComponent implements OnInit {
 
   @ViewChild('content', { static: false }) content: ElementRef;
 
+  slideIndex = 1;
+
+  ngAfterViewInit() {
+    this.showSlides(this.slideIndex);
+  }
+
+  plusSlides(n: number) {
+    this.showSlides(this.slideIndex += n);
+  }
+
+  currentSlide(n: number) {
+    this.showSlides(this.slideIndex = n);
+  }
+
+  
+
+  showSlides(n: number) {
+
+    let i;
+    const slides = document.getElementsByClassName("mySlides") as HTMLCollectionOf<HTMLElement>;
+    const dots = document.getElementsByClassName("dot") as HTMLCollectionOf<HTMLElement>;
+    if (n > slides.length) {
+      this.slideIndex = 1;
+    }
+    if (n < 1) {
+      this.slideIndex = slides.length;
+    }
+    for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[this.slideIndex - 1].style.display = "block";
+    dots[this.slideIndex - 1].className += " active";
+    }
+    
+
+    
+  startSlideShow() {
+    setInterval(this.showSlides, 5000);
+  }
+
   showModal = false;
 
   closeModal() {
     this.showModal = false;
+      document.body.classList.remove('modal-open');
   }
 
   constructor(
@@ -489,9 +454,13 @@ export class LoginComponent implements OnInit {
   openModal() {
     this.modalService.open(this.content, { ariaLabelledBy: 'modal-basic-title' });
     this.showModal = true
+     document.body.classList.add('modal-open');
+
   }
 
   ngOnInit(): void {
+
+
     this.content = this.content;
     this.loginform = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -505,12 +474,10 @@ export class LoginComponent implements OnInit {
       const foundUser = data.find((user: { email: string, password: string }) => {
         return user.email === email && user.password === password;
       });
-      if (foundUser) {
-        this.router.navigate(['/main']);
-      }
-      else {
-        this.router.navigate(['/main']);
-      }
     });
+    
+        this.router.navigate(['/home']);
+      
+  
   }
 }  

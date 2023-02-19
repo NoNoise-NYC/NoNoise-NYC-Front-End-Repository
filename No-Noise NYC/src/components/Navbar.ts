@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-navbar',
   template: `
-    <mat-toolbar color="primary" class="navbar" [ngStyle]="{'width':'100vw', 'margin':'auto', 'background-color': 'transparent','color': 'white' ,'font-size':'80px', 'height': '130px'}">
+    <mat-toolbar color="primary" class="navbar" [ngStyle]="{'width':'100vw', 'margin':'auto', 'background-color': 'black','color': 'white' ,'position':'fixed','font-size':'120px', 'height': '150px'}">
       <img src="./assets/images/newLogo.png" alt="logo" class="logo">
       <span class="spacer"></span>
       <div class="navbar-buttons">

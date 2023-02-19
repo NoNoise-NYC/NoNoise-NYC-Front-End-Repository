@@ -35,4 +35,22 @@
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
 
 <script src="https://d3js.org/d3.v4.min.js">
+
+  let slideIndex = 0;
+
+  function showSlides() {
+    const slides = document.getElementsByClassName("mySlides");
+    slideIndex++;
+    if (slideIndex > slides.length) {
+      slideIndex = 1;
+    }
+    for (let i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+    }
+    slides[slideIndex - 1].style.display = "block";
+  }
+
+  function startSlideShow() {
+    setInterval(showSlides, 5000);
+  }
 </script>

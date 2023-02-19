@@ -4,7 +4,9 @@
   --custom-accent: #ffd740;
   --custom-warn: #f44336;
 }
-
+.modal-open {
+  filter: blur(4px);
+}
 
 .section-1 {
   margin: auto;
@@ -102,7 +104,7 @@ input[type="submit"] {
   background-color: white;
 }
 body {
-  background-image: url('../assets/images/himalayas.jpg');
+  background-color:white;
   background-size: cover;
   height: 100vh;
   margin: auto;
