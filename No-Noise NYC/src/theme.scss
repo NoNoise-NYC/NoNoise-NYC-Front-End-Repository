@@ -13,12 +13,13 @@ $typography: (
 
 .section-1 {
   position: absolute; 
-  top: 50px;
+  top:250px;
    height: 600px; 
    left: 500px; 
     display: flex; 
     align-items: center; 
   justify-content: center;
+  z-index:-1;
   }
   .content {
     padding: 16px;
@@ -31,7 +32,7 @@ $typography: (
 font-weight: 800;
 font-size: larger;
 left: 50%;
-top:50px;
+
   width:400px;
 }
 
@@ -66,6 +67,7 @@ height: 480px;
   justify-content: space-evenly;
   align-items: center;
     display: flex;  
+    z-index :-1;
   }
   
 
@@ -78,6 +80,7 @@ height: 480px;
   justify-content: space-evenly;
   align-items: center;
     display: flex;
+    z-index:-1;
   }
 
   #title{

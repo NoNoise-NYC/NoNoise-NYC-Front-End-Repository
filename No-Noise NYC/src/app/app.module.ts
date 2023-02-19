@@ -12,8 +12,12 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonModule } from '@angular/common';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { OwlModule } from 'ngx-owl-carousel';
-import { NewsFeedComponent } from './news-feed/news-feed.component';
-import { PostComponent } from './news-feed/post-feed/post.component';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
+
+import { environment } from '../environments/environment';
+import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
+
 
 
 import { AppComponent } from './app.component';
@@ -29,14 +33,18 @@ import { rootRouterConfig } from './app.routes';
 
 import { BlogComponent } from './blog/blog.component';
 import {MainPageComponent} from 'src/components/MainPage'
-import { PostFeedComponent } from 'src/components/newPostPage';
+// import { PostFeedComponent } from 'src/components/newPostPage';
 import { InputFieldComponent } from 'src/components/InputField';
 import { NewCommentModalComponent } from 'src/components/newCommentModal';
 import { CommentComponent } from 'src/components/comment';
 import { CommentModalComponent } from 'src/components/commentModal';
 import { CommentListComponent } from 'src/components2/commentList';
 import { BasicModalComponent } from 'src/components/modal';
-import { HeatmapComponent } from 'src/components/noiseComplaint';
+// import { HeatmapComponent } from 'src/components/noiseComplaint';
+import { PostFeedComponent } from './pages copy/post-feed/post-feed.component';
+import { CreatePostComponent } from './tools/create-post/create-post.component';
+import { PostComponent } from './tools/post/post.component';
+import { ReplyComponent } from './tools/reply/reply.component';
 
 // import { HeatmapComponent } from 'src/components/noiseComplaint';
 import { SeverityMeterComponent } from 'src/components/severitymeter';
@@ -49,7 +57,7 @@ const appRoutes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
   {path:'home',component: SeverityMeterComponent},
-  {path:'social',component: HeatmapComponent}
+  {path:'social',component: PostFeedComponent}
 
 ];
 
@@ -61,15 +69,15 @@ const appRoutes: Routes = [
     LoginComponent,
     FooterComponent,
     BlogComponent,
-   
-  MainPageComponent,
+    PostFeedComponent,
+    CreatePostComponent,
+    PostComponent,
+    ReplyComponent,
+    MainPageComponent,
     CommentComponent,
     NewCommentModalComponent,
     PostFeedComponent,
     SeverityMeterComponent,
-    NewsFeedComponent,
-    PostComponent,
-
     InputFieldComponent,
     CommentListComponent,
     CommentModalComponent,
@@ -78,7 +86,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     HttpClientModule,
-  
+    AngularFireModule.initializeApp(environment.firebase),
     NgbModule,
     OwlModule,
     MatCardModule,
@@ -103,4 +111,8 @@ const appRoutes: Routes = [
   bootstrap: [AppComponent  ],
   entryComponents:[SignupComponent, LoginComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(){
+    FirebaseTSApp.init(environment.firebase);
+  }
+}

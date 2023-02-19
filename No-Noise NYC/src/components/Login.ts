@@ -260,6 +260,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   .card {
     width: 300px;
     height: 400px;
+    top:200px;
     position: relative;
     transition: transform 0.3s;
     transform-style: preserve-3d;

@@ -24,7 +24,7 @@ export class HeatmapComponent implements AfterViewInit {
   heatmap: any;
 
   constructor(private http: HttpClient) {
-    this.boroughsData = {};
+    this.boroughsData =[];
   }
 
   ngAfterViewInit(): void {
@@ -92,6 +92,6 @@ export class HeatmapComponent implements AfterViewInit {
       'Queens': { lat: 40.7282, lng: -73.7949 },
       'Staten Island': { lat: 40.5795, lng: -74.1502 }
     };
-    return boroughCenters[borough];
-  }
+return { lat: 40.8448, lng: -73.8648 }
+}
 }

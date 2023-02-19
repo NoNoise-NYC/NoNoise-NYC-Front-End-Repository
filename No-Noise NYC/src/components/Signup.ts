@@ -80,7 +80,7 @@ animation-delay: 1s;
 </style>
 <div class="section-1">
 
-<h1 id="intro">NoNoise NYC is dedicated to promoting a quieter world, one community at a time. </h1>
+<h1 id="intro">NoNoise NYC is dedicated to promoting a quieter world, one community at a time.<img id="img1" mat-card-image  src="./assets/images/lightbulb.jpg"> </h1>
 <img id="img1" mat-card-image  src="./assets/images/noNooise.png">
 </div>
 <div>
@@ -266,7 +266,8 @@ button {
   transition: transform 0.6s;
   transform-style: preserve-3d;
   border: 5px solid #000000;
-  background-color:#E7EAF4
+  background-color:#E7EAF4;
+  z-index:-1;
 }
 
 .card-front,
