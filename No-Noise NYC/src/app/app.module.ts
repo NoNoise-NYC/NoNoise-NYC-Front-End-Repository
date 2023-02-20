@@ -13,12 +13,9 @@ import { CommonModule } from '@angular/common';
 import { NgxPageScrollCoreModule } from 'ngx-page-scroll-core';
 import { OwlModule } from 'ngx-owl-carousel';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFireAnalyticsModule } from '@angular/fire/compat/analytics';
+
 
 import { environment } from '../environments/environment';
-import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
-
-
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from 'src/components/Navbar';
@@ -112,7 +109,5 @@ const appRoutes: Routes = [
   entryComponents:[SignupComponent, LoginComponent]
 })
 export class AppModule { 
-  constructor(){
-    FirebaseTSApp.init(environment.firebase);
-  }
+ 
 }

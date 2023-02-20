@@ -1,6 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
-import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
+import { HttpClient } from '@angular/common/http';
+
+interface UserProfile {
+  publicName: string;
+  description: string;
+}
 
 @Component({
   selector: 'app-profile',
@@ -10,12 +14,13 @@ import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
 export class ProfileComponent implements OnInit {
   @Input() show: boolean;
 
-  firestore: FirebaseTSFirestore;
-  auth: FirebaseTSAuth;
+  userProfile: UserProfile = {
+    publicName: '',
+    description: '',
+  };
 
   constructor() { 
-    this.firestore = new FirebaseTSFirestore();
-    this.auth = new FirebaseTSAuth();
+    this.show = false; // initialize the property in the constructor
   }
 
   ngOnInit(): void {
@@ -25,25 +30,16 @@ export class ProfileComponent implements OnInit {
     nameInput: HTMLInputElement,
     descriptionInput: HTMLTextAreaElement
   ) {
-    let name = nameInput.value;
-    let description = descriptionInput.value;
-    this.firestore.create(
-      {
-        path: ["Users", this.auth.getAuth().currentUser.uid],
-        data: {
-          publicName: name,
-          description: description
-        },
-        onComplete: (docId) => {
-          alert("Profile Created");
-          nameInput.value = "";
-          descriptionInput.value = "";
-        },
-        onFail: (err) => {
-
-        }
-      }
+    this.userProfile.publicName = nameInput.value;
+    this.userProfile.description = descriptionInput.value;
+    // Save the user profile to a backend server using an HTTP POST request
+    this.http.get('`http://localhost:4005/users', this.userProfile).subscribe(
+      () => {
+        alert('Profile created');
+        nameInput.value = '';
+        descriptionInput.value = '';
+      },
+     
     );
   }
-
 }

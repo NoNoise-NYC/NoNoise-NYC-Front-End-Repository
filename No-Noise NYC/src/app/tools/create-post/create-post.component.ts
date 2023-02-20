@@ -1,92 +1,72 @@
 import { Component, OnInit } from '@angular/core';
-import { FirebaseTSAuth } from 'firebasets/firebasetsAuth/firebaseTSAuth';
-import { FirebaseTSFirestore } from 'firebasets/firebasetsFirestore/firebaseTSFirestore';
-import { FirebaseTSStorage } from 'firebasets/firebasetsStorage/firebaseTSStorage';
-import { FirebaseTSApp } from 'firebasets/firebasetsApp/firebaseTSApp';
 import { MatDialogRef } from '@angular/material/dialog';
+
 @Component({
-  selector: 'app-create-post',
-  templateUrl: './create-post.component.html',
-  styleUrls: ['./create-post.component.css']
+selector: 'app-create-post',
+templateUrl: './create-post.component.html',
+styleUrls: ['./create-post.component.css']
 })
 export class CreatePostComponent implements OnInit {
-  selectedImageFile :File;
-  auth = new FirebaseTSAuth();
-  firestore = new FirebaseTSFirestore();
-  storage = new FirebaseTSStorage();
-  constructor(private dialog: MatDialogRef<CreatePostComponent>) { }
+  selectedImageFile: File | null = null;
 
-  ngOnInit(): void {
-  }
 
-  onPostClick(commentInput: HTMLTextAreaElement) {
-    let comment = commentInput.value;
-    if(comment.length <= 0 ) return;
-    if(this.selectedImageFile) {
-      this.uploadImagePost(comment);
-    } else {
-      this.uploadPost(comment);
-    }
-   
-  }
+constructor(private dialog: MatDialogRef<CreatePostComponent>) { }
 
-  uploadImagePost(comment: string){
-    let postId = this.firestore.genDocId();
-    this.storage.upload(
-      {
-        uploadName: "upload Image Post",
-        path: ["Posts", postId, "image"],
-        data: {
-          data: this.selectedImageFile
-        },
-        onComplete: (downloadUrl) => {
-          this.firestore.create(
-            {
-              path: ["Posts", postId],
-              data: {
-                comment: comment,
-                creatorId: this.auth.getAuth().currentUser.uid,
-                imageUrl: downloadUrl,
-                timestamp: FirebaseTSApp.getFirestoreTimestamp()
-              },
-              onComplete: (docId) => {
-                this.dialog.close();
-              }
-            }
-          );
-        }
-      }
-    );
-  }
+ngOnInit(): void {
+}
 
-  uploadPost(comment: string){
-    this.firestore.create(
-      {
-        path: ["Posts"],
-        data: {
-          comment: comment,
-          creatorId: this.auth.getAuth().currentUser.uid,
-          timestamp: FirebaseTSApp.getFirestoreTimestamp()
-        },
-        onComplete: (docId) => {
-          this.dialog.close();
-        }
-      }
-    );
-  }
+onPostClick(commentInput: HTMLTextAreaElement) {
+const comment = commentInput.value;
+if (comment.length <= 0) {
+return;
+}
+if (this.selectedImageFile) {
+this.uploadImagePost(comment);
+} else {
+this.uploadPost(comment);
+}
+}
 
-  onPhotoSelected(photoSelector: HTMLInputElement) {
-    this.selectedImageFile = photoSelector.files[0];
-    if(!this.selectedImageFile) return;
-    let fileReader = new FileReader();
-    fileReader.readAsDataURL(this.selectedImageFile);
-    fileReader.addEventListener(
-      "loadend",
-      ev => {
-        let readableString = fileReader.result.toString();
-        let postPreviewImage = <HTMLImageElement>document.getElementById("post-preview-image");
-        postPreviewImage.src = readableString;
-      }
-    );
-  }
+uploadImagePost(comment: string) {
+const postId = this.genDocId();
+this.uploadFile(this.selectedImageFile, postId)
+.then(downloadUrl => {
+this.createPost({ comment, creatorId: "currentUserUid", imageUrl: downloadUrl, timestamp: new Date() }, postId);
+});
+}
+
+genDocId(): string {
+return Math.random().toString(36).substring(2, 10);
+}
+
+async uploadFile(file: File, postId: string): Promise<string> {
+// code for uploading the file to storage goes here, then return the download URL
+return Promise.resolve("downloadUrl");
+}
+
+createPost(data: { comment: string; creatorId: string; imageUrl?: string; timestamp: Date }, postId: string) {
+// code for creating a new post in the database goes here
+this.dialog.close();
+}
+
+uploadPost(comment: string) {
+this.createPost({ comment, creatorId: "currentUserUid", timestamp: new Date() }, this.genDocId());
+}
+
+onPhotoSelected(photoSelector: HTMLInputElement) {
+this.selectedImageFile = photoSelector.files[0];
+if (!this.selectedImageFile) {
+return;
+}
+const fileReader = new FileReader();
+fileReader.readAsDataURL(this.selectedImageFile);
+fileReader.addEventListener(
+"loadend",
+ev => {
+const readableString = fileReader.result.toString();
+const postPreviewImage = <HTMLImageElement>document.getElementById("post-preview-image");
+postPreviewImage.src = readableString;
+}
+);
+}
 }
