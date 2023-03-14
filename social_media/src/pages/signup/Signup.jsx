@@ -11,7 +11,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
-import "../login/login.css";
+
 import "./signup.css";
 import React from 'react';
 

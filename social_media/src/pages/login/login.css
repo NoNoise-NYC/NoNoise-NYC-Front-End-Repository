@@ -1,3 +1,9 @@
+body{
+  padding:100px;
+  margin:auto;
+  display:flex;
+}
+
 .avatarPic {
   background-color: #343a40 !important;
 }
