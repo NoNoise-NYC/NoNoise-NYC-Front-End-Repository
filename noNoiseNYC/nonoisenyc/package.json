@@ -1,23 +1,23 @@
 {
-  "name": "",
-  "version": "1.0.0",
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
-  "main": "index.js",
-  "scripts": {
+  
+  "name": "nonoisenyc",
+  "version": "0.1.0",
+  "private": true
+,
+"scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "run": "nodemon app.js"
+    "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/techview-org/techView_FrontEnd-Repository.git"
+    "url": "git+https://github.com/noNoiseNYC"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/techview-org/techView_FrontEnd-Repository/issues"
+    "url": "https://github.com/noNoiseNyc"
   },
   "dependencies": {
     "@ant-design/icons": "^4.8.0",
@@ -72,3 +72,4 @@
     "prettier": "^2.8.0"
   }
 }
+

@@ -1,0 +1,19 @@
+.homeContainer {
+    display: flex;
+    width: 100%;
+  }
+  
+  .leftSideBar {
+      flex: 2;
+  }
+  
+  .rightSideBar {
+      flex:3
+  }
+  
+  #dark {
+      background-color: black;
+  }
+  
+  
+  
