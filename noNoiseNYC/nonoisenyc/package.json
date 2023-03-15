@@ -5,14 +5,14 @@
   "private": true
 ,
 "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/noNoiseNYC"
+    "url": "git+https://github.com/"
   },
   "author": "",
   "license": "ISC",
@@ -26,9 +26,6 @@
     "@headlessui/react": "^1.7.5",
     "@heroicons/react": "^2.0.13",
     "@iconscout/react-unicons": "^1.1.6",
-    "@material-ui/core": "^4.12.4",
-    "@mui/icons-material": "^5.11.0",
-    "@mui/material": "^5.10.16",
 
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -38,13 +35,12 @@
     "leaflet": "^1.9.3",
     "luxon": "^2.4.0",
     "react-dom": "^18.2.0",
-    "react": "^18.2.0",
+ 
     "react-bootstrap": "^2.4.0",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.4.3",
     "react-scripts": "^2.1.3"
 
-  
   },
   "eslintConfig": {
     "extends": [
@@ -56,9 +52,7 @@
     "production": [
       ">0.2%",
       "not dead",
-      "not op_mini all"
-
-    
+      "not op_mini all"    
     ],
     "development": [
       "last 1 chrome version",
